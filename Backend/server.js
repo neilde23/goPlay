@@ -21,7 +21,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to goPlay application." });
 });
 
-// require("./app/routes/signin.routes.js")(app);
+require("./app/routes/event.routes")(app);
+require("./app/routes/game.routes")(app);
+require("./app/routes/player.routes")(app);
+require("./app/routes/team.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
