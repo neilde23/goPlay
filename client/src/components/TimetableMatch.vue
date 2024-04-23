@@ -1,6 +1,9 @@
 <template>
-    <div class="timetable">
+    <div class="timetable" :style="{ backgroundColor: color1 }">
         <div>
+            <div class="boutton-position">
+                <button class="roundButton" @click="changeThemeColor"></button>
+            </div>
             <ul class="filters">
                 <li>
                     <select v-model="selectedGame" class="select">
@@ -17,12 +20,12 @@
                 </li>
             </ul>
         </div>
-        <div class="row first-row">
+        <div class="row first-row rows" :style="{ backgroundColor: color2 }">
             <div class="col-1">Time</div>
             <div class="col text-center">Match</div>
             <div class="col">Event</div>
         </div>
-        <div class="row card-row" v-for="row in matchesTest">
+        <div class="rows row card-row " v-for="row in matchesTest" :style="{ backgroundColor: color2 }">
             <div class="col-1">{{ row.dateBegin }}</div>
             <div class="col text-center">{{ row.idTeam1 }} vs {{ row.idTeam2 }}</div>
             <div class="col">{{ row.idEvent }}</div>
@@ -44,6 +47,8 @@
     const selectedDate = ref(getTodayDate());
     const selectedGame = ref('');
     const matchesTest = ref();
+    const color1 = ref('#313840');
+    const color2 = ref('#636E7A');
 
     async function fetchMatches() {
         try {
@@ -59,6 +64,38 @@
     });
 
     fetchMatches();
+
+
+    function changeThemeColor() {
+
+        /*const timetable = document.querySelector('.timetable');
+        const row = document.querySelector('.rows');
+        const button = document.querySelector('.roundButton');
+     
+
+        const computedTimetableStyle = window.getComputedStyle(timetable);
+        const timetableBackgroundColor = computedTimetableStyle.backgroundColor;*/
+        const button = document.querySelector('.roundButton');
+        console.log(color1.value);
+
+        switch (color1.value) {
+            case '#313840':
+                color1.value = '#5a0009';
+                color2.value = '#763038';
+                button.style.backgroundColor = '#313840';
+                break;
+            case '#5a0009':
+                color1.value = '#202225';
+                color2.value = '#585a5b';
+                button.style.backgroundColor = '#313840';
+                break;
+            default:
+                color1.value = '#313840';
+                color2.value = '#636E7A';
+                button.style.backgroundColor = '#5a0009';
+                break;
+        }
+    }
 
 
     function getTodayDate() {
@@ -87,6 +124,7 @@
 </script>
   
 <style scoped>
+
     * {
         font-family: sans-serif;
         color: #a5afbb;
@@ -151,6 +189,22 @@
     .container {
         width: 500px !important;
     }
+
+    .roundButton {
+        height: 15px;
+        background-color: #5a0009;
+
+    }
+
+    .boutton-position {
+        display: flex;
+        justify-content: right;
+    }
+
+
+
+
+
    
 </style>
   

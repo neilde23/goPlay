@@ -43,13 +43,7 @@
   <footer id="footer" ref="targetElement2">
     <h3> Informations </h3>
   </footer>
-  <div>
-    <PlayerPage/>
-
-  </div>
-
-  
-    
+   
 </template>
 
 
@@ -58,7 +52,7 @@
   import SearchBar from "@/components/SearchBar.vue"
   import Carousel from "@/components/Carousel.vue"
   import TimetableMatch from "@/components/TimetableMatch.vue"
-  import PlayerPage from '@/components/PlayerPage.vue'
+
 
   const targetElement = ref(null);
   const targetElement2 = ref(null);
