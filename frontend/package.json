@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "@vue/compiler-sfc": "^3.4.23",
+    "vue": "^3.4.23",
+    "vue-router": "^4.0.13",
+    "vue-template-compiler": "^2.7.16"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
