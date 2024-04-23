@@ -1,5 +1,6 @@
 <template>
     <div class="signin">
+
         <h1>Register</h1>
         <CustomComponent />
         <form @submit.prevent="submitForm" class="form-style">
@@ -15,10 +16,14 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" v-model="password" required>
             </div>
-            <button type="submit">Register</button>
+
+            
+            <button type="submit">Sign In</button>
+
         </form>
     </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -49,8 +54,6 @@ export default {
     }
   }
 }
-
-
 </script>
 
 <style scoped>
@@ -97,3 +100,6 @@ h1{
     height:550px
 }
 </style>
+
+
+
