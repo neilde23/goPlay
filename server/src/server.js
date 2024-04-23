@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("./db.js");
 const Player = require("./Player.js");
 const Match = require("./Match.js");
+const Team = require("./Team.js");
 
 
 const app = express();
@@ -49,21 +50,23 @@ app.post("/api/getMatches", async (req, res) => {
 
 });
 
-app.get("/api/getMatches", async (req, res) => {
-    const { selectedGame, selectedDate } = req.body;
+app.get("/api/getTeam/:id", async (req, res) => {
+    const id = req.params.id;
 
-    try 
-    {
-        const [matches] = await Match.getMatch('', '');
-        res.json(matches);
+    try
+     {
+        const team = await getTeamById(id);
+        if (team.length === 0) 
+        {
+            return res.status(404).json({ error: "Team not found" });
+        }
 
-
+        res.json(team[0]);
     } catch (error) 
     {
-        console.error('Error fetching matches:', error);
-        res.status(500).json(error); 
+        console.error("Error fetching team:", error);
+        res.status(500).json({ error: "Internal server error" });
     }
-
 });
 
 

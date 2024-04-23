@@ -1,3 +1,6 @@
+const db = require("./db.js");
+
+
 class Team {
     constructor(id, name, idManager, description) {
         this.id = id;
@@ -11,7 +14,22 @@ class Team {
         
     }
 
-    static getTeamById(id) {
+    static async getTeamById(id) {
+        const query = "SELECT name FROM Team WHERE id = ?";
+        const params = [id];
+
+        try 
+        {
+            return await db.query(query, params);
+
+        } catch (error) 
+        {
+            console.error('Error fetching matches:', error);
+            return [];
+        }
+
+
+        
         
     }
 
@@ -31,3 +49,6 @@ class Team {
         
     }
 }
+
+
+module.exports = Team;

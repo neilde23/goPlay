@@ -27,7 +27,11 @@
         </div>
         <div class="rows row card-row " v-for="row in matchesTest" :style="{ backgroundColor: color2 }">
             <div class="col-1">{{ row.dateBegin }}</div>
-            <div class="col text-center">{{ row.idTeam1 }} vs {{ row.idTeam2 }}</div>
+            <div class="col d-flex justify-content-center">
+                <div>{{ row.idTeam1 }}</div>
+                <div class="vs" :style="{ backgroundColor: color1 }">vs</div>
+                <div>{{ row.idTeam2 }}</div>
+            </div>
             <div class="col">{{ row.idEvent }}</div>
         </div>
     </div>
@@ -66,33 +70,21 @@
     fetchMatches();
 
 
-    function changeThemeColor() {
-
-        /*const timetable = document.querySelector('.timetable');
-        const row = document.querySelector('.rows');
-        const button = document.querySelector('.roundButton');
-     
-
-        const computedTimetableStyle = window.getComputedStyle(timetable);
-        const timetableBackgroundColor = computedTimetableStyle.backgroundColor;*/
-        const button = document.querySelector('.roundButton');
-        console.log(color1.value);
+    function changeThemeColor() 
+    {
 
         switch (color1.value) {
             case '#313840':
                 color1.value = '#5a0009';
                 color2.value = '#763038';
-                button.style.backgroundColor = '#313840';
                 break;
             case '#5a0009':
                 color1.value = '#202225';
                 color2.value = '#585a5b';
-                button.style.backgroundColor = '#313840';
                 break;
             default:
                 color1.value = '#313840';
                 color2.value = '#636E7A';
-                button.style.backgroundColor = '#5a0009';
                 break;
         }
     }
@@ -199,6 +191,17 @@
     .boutton-position {
         display: flex;
         justify-content: right;
+    }
+
+    .vs {
+        margin-left: 6px;
+        margin-right: 6px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-radius: 6px;
+        font-size: small;
+        font-style:oblique;
+        text-align: center
     }
 
 

@@ -41,7 +41,7 @@
   </div>
 
   <footer id="footer" ref="targetElement2">
-    <h3> Informations </h3>
+    <h3> About </h3>
   </footer>
    
 </template>
