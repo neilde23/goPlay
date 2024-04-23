@@ -5,39 +5,39 @@ class Match {
         
     }
 
-    static async getMatch(game, date) {
-        let query = 'SELECT * FROM Matchs';
+    static async getMatch(game, date) 
+    {
+        let query = 'SELECT id, idTeam1, idTeam2, idEvent, TIME_FORMAT(dateBegin, "%H:%i") AS dateBegin, game FROM Matchs';
         const params = [];
         if (game) 
         {
-          query += ' WHERE game = ?';
-          params.push(game);
+            query += ' WHERE game = ?';
+            params.push(game);
         }
-        if (date) 
+        if (date)
         {
-          if (game) 
-          {
-            query += ' AND';
-
-          } 
-          else 
-          {
-            query += ' WHERE';
-          }
-          query += ' dateBegin = ?';
-          params.push(date);
+            if (game) 
+            {
+                query += ' AND';
+            } else 
+            {
+                query += ' WHERE';
+            }
+            query += ' DATE(dateBegin) = ?';
+            params.push(date);
         }
     
         try 
         {
-          return await db.query(query, params);
+            return await db.query(query, params);
 
         } catch (error) 
         {
-          console.error('Error fetching matches:', error);
-          return [];
+            console.error('Error fetching matches:', error);
+            return [];
         }
-    }
+  }
+  
 
     static async createMatch(idEvent, team1, team2, dateBegin, game)
     {

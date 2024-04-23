@@ -35,11 +35,28 @@ app.post("/login", (req,res) => {
 
 app.post("/api/getMatches", async (req, res) => {
     const { selectedGame, selectedDate } = req.body;
+    try 
+    {
+        const [matches] = await Match.getMatch(selectedGame, selectedDate);
+        res.json(matches);
+
+
+    } catch (error) 
+    {
+        console.error('Error fetching matches:', error);
+        res.status(500).json(error); 
+    }
+
+});
+
+app.get("/api/getMatches", async (req, res) => {
+    const { selectedGame, selectedDate } = req.body;
 
     try 
     {
-        const matches = await Match.getMatch(selectedGame, selectedDate);
+        const [matches] = await Match.getMatch('', '');
         res.json(matches);
+
 
     } catch (error) 
     {

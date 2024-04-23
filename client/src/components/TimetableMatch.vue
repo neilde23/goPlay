@@ -22,60 +22,43 @@
             <div class="col text-center">Match</div>
             <div class="col">Event</div>
         </div>
-        <div class="row card-row" v-for="row in matchList">
+        <div class="row card-row" v-for="row in matchesTest">
             <div class="col-1">{{ row.dateBegin }}</div>
             <div class="col text-center">{{ row.idTeam1 }} vs {{ row.idTeam2 }}</div>
             <div class="col">{{ row.idEvent }}</div>
         </div>
     </div>
 
+    
+
 </template>
   
 <script setup>
-    import { ref, computed } from 'vue';
+    import { ref,  watch } from 'vue';
     import axios from 'axios';
 
     const games = ref([
         "CSGO", "Rocket League", "LOL"
     ]);
-  
-    /*const arrayMatches = ref([
-    {
-        
-        idTeam1: 456,
-        idTeam2: 789,
-        dateBegin: '10:00',
-        idEvent: 123,
-        game: 'Dota 2'
-    },
-    {
-        idTeam1: 789,
-        idTeam2: 123,
-        dateBegin: '12:30',
-        idEvent: 456,
-        game: 'LoL',
-    }
-    ]);*/
 
     const selectedDate = ref(getTodayDate());
     const selectedGame = ref('');
+    const matchesTest = ref();
 
-    const matchList = computed(() => {
-        return axios.post('http://localhost:3000/api/getMatches', { selectedGame: selectedGame.value, selectedDate: selectedDate.value })
-        .then(response => {
-            console.log(response);
-            return response.data;
-        })
-        .catch(error => {
+    async function fetchMatches() {
+        try {
+            const response = await axios.post('http://localhost:3000/api/getMatches', { selectedGame: selectedGame.value, selectedDate: '' });
+            matchesTest.value = response.data;
+        } catch (error) {
             console.error('Error fetching matches:', error);
-            return;
-        });
+        }
+    }
+
+    watch([selectedGame, selectedDate], () => {
+        fetchMatches();
     });
 
-    
-
-
-
+    fetchMatches();
 
 
     function getTodayDate() {

@@ -1,0 +1,17 @@
+# Ignore les modules Node.js installés
+node_modules/
+
+# Ignore les fichiers journaux
+logs
+*.log
+
+# Ignore les fichiers de sauvegarde
+*.swp
+*~
+
+# Ignore les fichiers de configuration locale
+.env
+
+# Ignore les fichiers de débogage
+.vscode/
+.DS_Store
