@@ -9,7 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< Updated upstream
     "vue": "^3.4.21"
+=======
+    "@vue/compiler-sfc": "^3.4.23",
+    "axios": "^1.6.8",
+    "vue": "^3.4.23",
+    "vue-router": "^4.0.13",
+    "vue-template-compiler": "^2.7.16"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
