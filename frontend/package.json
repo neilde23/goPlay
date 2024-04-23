@@ -6,13 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "start-api": "node ../Backend/server.js",
+    "preview": "vite preview",
+    "start": "concurrently \"npm run dev\" \"npm run start-api\""
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "@vue/compiler-sfc": "^3.4.23",
+    "axios": "^1.6.8",
+    "vue": "^3.4.23",
+    "vue-router": "^4.0.13",
+    "vue-template-compiler": "^2.7.16"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
+    "concurrently": "^8.2.2",
     "vite": "^5.1.6"
   }
 }

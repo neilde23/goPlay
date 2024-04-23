@@ -1,25 +1,21 @@
 <template>
     <div class="signin">
-
-        <h1>Register</h1>
+      <h1>Sign In</h1>
         <CustomComponent />
         <form @submit.prevent="submitForm" class="form-style">
             <div>
                 <label for="pseudo">Pseudo:</label>
-                <input type="text" id="pseudo" v-model="pseudo" required>
+                <input type="text" id="pseudo" v-model="player.pseudo" required>
             </div>
             <div>
                 <label for="email">Email:</label>
-                <input type="email" id="email" v-model="email" required>
+                <input type="email" id="email" v-model="player.email" required>
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" id="password" v-model="password" required>
+                <input type="password" id="password" v-model="player.password" required>
             </div>
-
-            
             <button type="submit">Sign In</button>
-
         </form>
     </div>
 </template>
@@ -31,9 +27,12 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      pseudo: '',
-      email: '',
-      password: ''
+      player:{
+        pseudo: '',
+        email: '',
+        password: ''
+      }
+      
     }
   },
   methods: {
@@ -100,6 +99,3 @@ h1{
     height:550px
 }
 </style>
-
-
-
