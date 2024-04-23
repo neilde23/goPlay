@@ -2,7 +2,7 @@
     <div class="timetable" :style="{ backgroundColor: color1 }">
         <div>
             <div class="boutton-position">
-                <button class="roundButton" @click="changeThemeColor"></button>
+                <button class="roundButton" @click="changeThemeColor" :style="{ backgroundColor: color1 }"></button>
             </div>
             <ul class="filters">
                 <li>
@@ -28,11 +28,11 @@
         <div class="rows row card-row " v-for="row in matchesTest" :style="{ backgroundColor: color2 }">
             <div class="col-1">{{ row.dateBegin }}</div>
             <div class="col d-flex justify-content-center">
-                <div>{{ row.idTeam1 }}</div>
+                <div>{{ row.t1name }}</div>
                 <div class="vs" :style="{ backgroundColor: color1 }">vs</div>
-                <div>{{ row.idTeam2 }}</div>
+                <div>{{ row.t2name }}</div>
             </div>
-            <div class="col">{{ row.idEvent }}</div>
+            <div class="col">{{ row.eventName }}</div>
         </div>
     </div>
 
