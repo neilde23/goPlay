@@ -147,38 +147,4 @@ Event.findByTeam = (idTeam, result) => {
     });
 };
 
-// write a fucntion with a switch case
-Event.findBy = (id, type, result) => {
-    switch (type) {
-        case "player":
-            sql.query(`SELECT * FROM Event WHERE idPlayer = ${id}`, (err, res) => {
-                if (err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                    return;
-                }
-
-                console.log("event: ", res);
-                result(null, res);
-            });
-            break;
-        case "team":
-            sql.query(`SELECT * FROM Event WHERE idTeam = ${id}`, (err, res) => {
-                if (err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                    return;
-                }
-
-                console.log("event: ", res);
-                result(null, res);
-            });
-            break;
-        default:
-            console.log("error: ", "type not found");
-            result(null, "type not found");
-            break;
-    }
-};
-
 module.exports = Event;
