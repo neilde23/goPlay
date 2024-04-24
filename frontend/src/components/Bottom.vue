@@ -1,42 +1,66 @@
 <template>
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <p class="text-muted">goPlay is supported by</p>
-            <img class = "taille_logo" src="../../public/design2bon.png" alt="Design Image">
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+            <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Planning</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            </nav>
         </div>
     </footer>
 </template>
-
+    
 <script>
 export default {
-    name: 'Bottom'
+    name: 'Footer'
 }
 </script>
-
-<style scoped>
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-   
     
-}
-.taille_logo {
-    width: 100px;
-    height: 100px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
+<style scoped>
+    footer {
+        background-color: transparent;
+        color: #fff;
+        padding: 20px 0;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-top: .15rem solid white;
+        border-top-color: rgba(255, 255, 255, .25);
+        margin-top : 20px;
+    }
 
-.container {
-    display: flex;
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
 
-    align-items: center;
-    flex-direction: row;
-    padding-top: 20px;
-    color : white;
-}
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    nav ul li:last-child {
+        margin-right: 0;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
 </style>

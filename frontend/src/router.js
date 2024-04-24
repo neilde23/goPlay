@@ -5,6 +5,8 @@ import Visitor from '@/views/Visitor.vue'
 import Player from '@/views/Player.vue'
 
 
+import Planning from '@/views/Planning.vue'
+import Dashboard from '@/views/Dashboard.vue'
 
 const routes = [
     {
@@ -12,8 +14,6 @@ const routes = [
         name: 'Visitor',
         component: Visitor
     },
-
-
     {
       path: '/signin',
       name: 'SignIn',
@@ -24,12 +24,22 @@ const routes = [
       path: '/player',
       name: 'Player',
       component: Player
+    },
+
+    {
+        path: '/planning',
+        name: 'Planning',
+        component: Planning
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard
     }
+];
 
-  ];
-
-  const router = createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes,
-  })
+})
 export default router;
