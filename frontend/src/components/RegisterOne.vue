@@ -36,21 +36,24 @@ export default {
     }
   },
   methods: {
-    submitForm(e) {
-      e.preventDefault();
+      async submitForm() {
+          try {
+              const pseudo = document.getElementById('pseudo').value;
+              const email = document.getElementById('email').value; // Récupérer la valeur du champ email
+              const password = document.getElementById('password').value;
 
-      axios.post('http://localhost:3000/api/players', {
-        pseudo: this.pseudo,
-        email: this.email,
-        password: this.password
-      })
-      .then(response => {
-        console.log("New player created: ", response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    }
+              // Effectuer la requête POST avec les données du formulaire
+              const response = await axios.post('http://localhost:3000/api/players/register', {
+                  pseudo: pseudo,
+                  email: email,
+                  password: password
+              }); 
+
+              console.log(response.data); // Afficher la réponse du serveur
+          } catch (error) {
+              console.error('Error creating player:', error);
+          }
+      }
   }
 }
 </script>

@@ -4,10 +4,10 @@
         <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="#">Home</a>
         <a class="nav-link fw-bold py-1 px-0" href="" @click.prevent="scrollToTarget1" >Planning</a>
         <a class="nav-link fw-bold py-1 px-0" href="" @click.prevent="scrollToTarget2">About</a>
-        </nav>
-        <div>
-        <router-link to="/signin">Go to Page 1</router-link>
-        </div>
+    </nav>
+    <div>
+        <router-link class="nav-link fw-bold py-1 px-0" to="/signin">Register</router-link>
+    </div>
     </header>
         
     <div class="row">
@@ -17,9 +17,8 @@
         <div class="col d-flex align-items-center">
         <div>
             <h1>goPlay</h1>
-            <p>ishfiodshjfoidsofjodsijofdsjosjodsjojojoijqsdds hckdjqhkjcdshkjchsdkjhksjhcks<br>
-                dsjhdkjshdjkshkdjshkjdhskjhdkjshdkjhskjdhskjh cs,csklcskjckscjks<br>
-                dshkdhskjhdjshkdhsjkdhksjhdkjshjksdhsk
+            <p>
+            Welcome to goPlay, the best platform to manage your team and your games.
             </p>
             <div class="d-flex gap-2 py-5">
             <button class="btn btn-primary d-inline-flex align-items-center" type="button">
@@ -82,44 +81,42 @@ export default {
 
 <style scoped>
 
-  #manager-button {
-    background-color: #8B0000;
-    color: white;
+    #manager-button {
+        background-color: #8B0000;
+        color: white;
 
 
-  }
+    }
 
-  #manager-button:hover {
-    background-color: #751500
-  }
+    #manager-button:hover {
+        background-color: #751500
+    }
 
-  #search-bar
-  {
-    padding-top: 70px;
-  }
+    #search-bar
+    {
+        padding-top: 70px;
+    }
 
-  #header {
-    background-color: #161719;
-    border-bottom: 0.5px solid gray;
-    opacity: 0.6;
-   
-  }
-
-  .row {
-    height: 550px;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
-  }
-  .article {
-    height: 920px;
-    background-color: white
+    #header {
+        background-color: #161719;
+        border-bottom: 0.5px solid gray;
+        opacity: 0.6;
     
-  }
+    }
 
-  #footer {
-    height: 200px;
-  }
+    .row {
+        height: 550px;
+        background: rgb(0,0,0);
+        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
+    }
+    .article {
+        height: 920px;
+        background-color: white
+        
+    }
 
-  
+    #footer {
+        height: 200px;
+    }
 
 </style>
