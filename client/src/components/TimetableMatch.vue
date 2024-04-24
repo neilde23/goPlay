@@ -25,7 +25,7 @@
             <div class="col text-center">Match</div>
             <div class="col">Event</div>
         </div>
-        <div class="rows row card-row " v-for="row in matchesTest" :style="{ backgroundColor: color2 }">
+        <div class="rows row card-row" v-for="row in matchesTest" :style="{ backgroundColor: color2 }">
             <div class="col-1">{{ row.dateBegin }}</div>
             <div class="col d-flex justify-content-center">
                 <div>{{ row.t1name }}</div>
@@ -53,11 +53,12 @@
     const matchesTest = ref();
     const color1 = ref('#313840');
     const color2 = ref('#636E7A');
+    const maxItems = 10;
 
     async function fetchMatches() {
         try {
-            const response = await axios.post('http://localhost:3000/api/getMatches', { selectedGame: selectedGame.value, selectedDate: '' });
-            matchesTest.value = response.data;
+            const response = await axios.post('http://localhost:3000/api/getMatches', { selectedGame: selectedGame.value, selectedDate: selectedDate.value });
+            matchesTest.value = response.data.slice(0, maxItems);
         } catch (error) {
             console.error('Error fetching matches:', error);
         }
@@ -142,6 +143,7 @@
         padding: 40px 25px;
         background-color: #313840;
         border-radius: 20px;
+        height: 600px;
     }
 
     .date-picker {
@@ -176,6 +178,12 @@
 
     span:hover {
         cursor: default;
+        
+    }
+
+    span {
+        user-select: none;
+        padding: 0px 4px;
     }
 
     .container {
