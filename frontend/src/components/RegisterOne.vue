@@ -1,6 +1,6 @@
 <template>
     <div class="signin">
-      <h1>Sign In</h1>
+    <h1>Sign In</h1>
         <CustomComponent />
         <form @submit.prevent="submitForm" class="form-style">
             <div>
@@ -22,46 +22,45 @@
 
 
 <script>
-import axios from 'axios';
+    import axios from 'axios';
 
-export default {
-  data() {
-    return {
-      player:{
-        pseudo: '',
-        email: '',
-        password: ''
-      }
-      
+    export default {
+        data() {
+            return {
+                player:{
+                    pseudo: '',
+                    email: '',
+                    password: ''
+                }
+            }
+        },
+        methods: {
+            async submitForm() {
+                try {
+                    const pseudo = document.getElementById('pseudo').value;
+                    const email = document.getElementById('email').value; // Récupérer la valeur du champ email
+                    const password = document.getElementById('password').value;
+
+                    // Effectuer la requête POST avec les données du formulaire
+                    const response = await axios.post('http://localhost:3000/api/players/register', {
+                        pseudo: pseudo,
+                        email: email,
+                        password: password
+                    }); 
+
+                    console.log(response.data); // Afficher la réponse du serveur
+                } catch (error) {
+                    console.error('Error creating player:', error);
+                }
+            }
+        }
     }
-  },
-  methods: {
-      async submitForm() {
-          try {
-              const pseudo = document.getElementById('pseudo').value;
-              const email = document.getElementById('email').value; // Récupérer la valeur du champ email
-              const password = document.getElementById('password').value;
-
-              // Effectuer la requête POST avec les données du formulaire
-              const response = await axios.post('http://localhost:3000/api/players/register', {
-                  pseudo: pseudo,
-                  email: email,
-                  password: password
-              }); 
-
-              console.log(response.data); // Afficher la réponse du serveur
-          } catch (error) {
-              console.error('Error creating player:', error);
-          }
-      }
-  }
-}
 </script>
 
 <style scoped>
-
 h1{
     padding : 20px;
+    text-align : center;
 }
 
 .form-style {
@@ -70,13 +69,13 @@ h1{
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f8f8f8;
+    background-color: transparent;
 }
 
 .form-style label {
     display: block;
     margin-bottom: 10px;
-    color : #333;
+    color : white;
 }
 
 .form-style input {
@@ -95,10 +94,9 @@ h1{
     color: white;
     background-color: #5C6BC0;
 }
-.signin {
-    margin-top: 0px;
-    text-align: center;
-    background: linear-gradient(to bottom, #313131, #f8f8f8);
-    height:550px
+
+.form-style button:hover {
+    background-color: #3949AB;
 }
+
 </style>
