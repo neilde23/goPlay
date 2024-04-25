@@ -58,6 +58,13 @@
 
                 } catch (error) {
                     console.error('Error logging in player:', error);
+
+                    // notify the user that the login failed
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Your email or password is incorrect!',
+                    });
                 }
             }
         }

@@ -59,6 +59,13 @@
                     this.$router.push('/signin');
                 } catch (error) {
                     console.error('Error creating player:', error);
+
+                    // notify the user that the account creation failed
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'An error occurred while creating your account!',
+                    });
                 }
             }
         }
