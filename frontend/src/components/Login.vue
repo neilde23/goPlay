@@ -1,12 +1,8 @@
 <template>
-    <div class="signin">
-    <h1>Sign Up</h1>
+    <div class="signup">
+        <h1>Login</h1>
         <CustomComponent />
         <form @submit.prevent="submitForm" class="form-style">
-            <div>
-                <label for="pseudo">Pseudo:</label>
-                <input type="text" id="pseudo" v-model="player.pseudo" required>
-            </div>
             <div>
                 <label for="email">Email:</label>
                 <input type="email" id="email" v-model="player.email" required>
@@ -15,12 +11,10 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" v-model="player.password" required>
             </div>
-            <button type="submit">Sign Up</button>
-            <router-link to="/signin" class="nav-link"> Already have an account? </router-link>
+            <button type="submit">Sign In</button>
         </form>
-    </div>
+    </div>  
 </template>
-
 
 <script>
     import axios from 'axios';
@@ -29,8 +23,7 @@
     export default {
         data() {
             return {
-                player:{
-                    pseudo: '',
+                player: {
                     email: '',
                     password: ''
                 }
@@ -39,26 +32,32 @@
         methods: {
             async submitForm() {
                 try {
+                    const email = document.getElementById('email').value; // Récupérer la valeur du champ email
+                    const password = document.getElementById('password').value;
+
                     // Effectuer la requête POST avec les données du formulaire
-                    const response = await axios.post('http://localhost:3000/api/players/register', {
-                        pseudo: this.player.pseudo,
-                        email: this.player.email,
-                        password: this.player.password
-                    }); 
+                    const response = await axios.post('http://localhost:3000/api/players/login', {
+                        email: email,
+                        password: password
+                    });
 
                     console.log(response.data); // Afficher la réponse du serveur
 
-                    // notify the user that the account has been created
+                    // save the token in the local storage
+                    localStorage.setItem('token', response.data.id);
+
+                    // notify the user that he is logged in successfully
                     Swal.fire({
                         icon: 'success',
                         title: 'Success!',
-                        text: 'Your account has been created successfully!',
+                        text: 'You are logged in successfully!',
                     });
 
-                    // Redirect to the sign-in page
-                    this.$router.push('/signin');
+                    // redirect to the player page
+                    this.$router.push('/home');
+
                 } catch (error) {
-                    console.error('Error creating player:', error);
+                    console.error('Error logging in player:', error);
                 }
             }
         }
@@ -105,17 +104,6 @@ h1{
 
 .form-style button:hover {
     background-color: #3949AB;
-}
-
-.nav-link {
-    color: white;
-    text-align: center;
-    display: block;
-    margin-top: 10px;
-}
-
-.nav-link:hover {
-    color: #5C6BC0;
 }
 
 </style>

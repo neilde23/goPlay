@@ -11,7 +11,7 @@
             </div>
             <div class="user-info">
                 <!-- Icon for profile -->
-                <router-link class="nav-link fw-bold py-1 px-0" to="/signin"><a href="#"><i class="fas fa-user"></i></a></router-link>
+                <router-link class="nav-link fw-bold py-1 px-0" to="/signup"><a href="#"><i class="fas fa-user"></i></a></router-link>
                 <!-- User's name -->
                 <span></span>
                 <!-- Icon for notifications -->
@@ -53,10 +53,11 @@ import router from '@/router';
 
     nav .logo {
         margin-left: 20px; /* Adjust margin as needed */
+        height: 50px; /* Adjust height as needed */
     }
 
     nav img {
-        max-height: 50px; /* Adjust height as needed */
+        height: 70px; /* Adjust height as needed */
     }
 
     .user-info {

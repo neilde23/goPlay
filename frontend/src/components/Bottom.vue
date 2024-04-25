@@ -29,6 +29,8 @@ export default {
         display: flex;
         border-top: .15rem solid white;
         border-top-color: rgba(255, 255, 255, .25);
+        /* put it always at the bottom of the page */
+        bottom: 0;
     }
 
     .container {

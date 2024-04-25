@@ -36,4 +36,9 @@
         background-position: center;
         height: 100vh; /* Ensure the background covers the entire viewport */
     }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
 </style>

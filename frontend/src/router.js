@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import App from '@/App.vue'
 import SignIn from '@/views/SignIn.vue'
+import SignUp from '@/views/SignUp.vue'
 import Visitor from '@/views/Visitor.vue'
 import Player from '@/views/Player.vue'
 import Manager from '@/views/Manager.vue'
@@ -16,7 +17,11 @@ const routes = [
       name: 'SignIn',
       component: SignIn
     },
-
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
+    },
     {
       path: '/player',
       name: 'Player',

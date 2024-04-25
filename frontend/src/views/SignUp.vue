@@ -1,16 +1,16 @@
 <template>
     <div>
-        <Login />
+        <RegisterOne />
     </div>
 </template>
 
 <script>
-    import Login from '@/components/Login.vue';
+    import RegisterOne from "@/components/RegisterOne.vue";
 
     export default {
-        name: 'SignIn',
+        name: 'SignUp',
         components: {
-            Login
+            RegisterOne
         }
     }
 </script>
