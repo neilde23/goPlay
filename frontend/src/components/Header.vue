@@ -5,8 +5,8 @@
             <router-link class="logo" to="/"><img src="../assets/logo.png" alt="Logo"></router-link>
             <div class="nav-links">
                 <router-link class="nav-link fw-bold py-1 px-0" to="/">Home</router-link>
-                <router-link class="nav-link fw-bold py-1 px-0" to="/player">Player Page</router-link>
-                <router-link class="nav-link fw-bold py-1 px-0" to="/dashboard">Dashboard</router-link>
+                <router-link class="nav-link fw-bold py-1 px-0" to="/player">Player mode</router-link>
+                <router-link class="nav-link fw-bold py-1 px-0" to="/manager">Manager mode</router-link>
                 <router-link class="nav-link fw-bold py-1 px-0" to="/">About</router-link>
             </div>
             <div class="user-info">

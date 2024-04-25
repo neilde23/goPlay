@@ -13,14 +13,14 @@
                 <p>Are you a player? Access the player area to find and join a team!
                 </p>
                 <div class="d-flex gap-2 py-5">
-                    <button class="btn btn-primary d-inline-flex align-items-center" type="button">
+                    <router-link to="/player"><button class="btn btn-primary d-inline-flex align-items-center" type="button">
                         Player Area
                         <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
-                    </button>
-                    <button id="manager-button" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+                    </button></router-link>
+                    <router-link to="/manager"><button id="manager-button" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
                         Manager Area
                         <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
-                    </button>
+                    </button></router-link>
                 </div>
             </div>
             </div>

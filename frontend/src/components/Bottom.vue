@@ -4,10 +4,9 @@
             <p>&copy; 2024 Your Website. All rights reserved.</p>
             <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Planning</a></li>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Sitemap</a></li>
             </ul>
             </nav>
         </div>

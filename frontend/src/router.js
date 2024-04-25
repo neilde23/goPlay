@@ -3,8 +3,7 @@ import App from '@/App.vue'
 import SignIn from '@/views/SignIn.vue'
 import Visitor from '@/views/Visitor.vue'
 import Player from '@/views/Player.vue'
-
-import Dashboard from '@/views/Dashboard.vue'
+import Manager from '@/views/Manager.vue'
 
 const routes = [
     {
@@ -24,9 +23,9 @@ const routes = [
       component: Player
     },
     {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: Dashboard
+        path: '/manager',
+        name: 'Manager',
+        component: Manager
     }
 ];
 
