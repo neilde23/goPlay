@@ -30,7 +30,6 @@ export default {
         display: flex;
         border-top: .15rem solid white;
         border-top-color: rgba(255, 255, 255, .25);
-        margin-top : 20px;
     }
 
     .container {
