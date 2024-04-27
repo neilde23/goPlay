@@ -7,6 +7,7 @@
                 <router-link class="nav-link fw-bold py-1 px-0" to="/">Home</router-link>
                 <router-link class="nav-link fw-bold py-1 px-0" to="/player">Player area</router-link>
                 <router-link class="nav-link fw-bold py-1 px-0" to="/manager">Manager area</router-link>
+                <router-link class="nav-link fw-bold py-1 px-0" to="/player">My team</router-link>
                 <router-link class="nav-link fw-bold py-1 px-0" to="/">About</router-link>
             </div>
             <div class="user-info">
