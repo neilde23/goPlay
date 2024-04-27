@@ -6,7 +6,7 @@ import Visitor from '@/views/Visitor.vue'
 import Player from '@/views/Player.vue'
 import Manager from '@/views/Manager.vue'
 import About from '@/views/About.vue'
-// import Team from '@/views/Team.vue'
+import Team from '@/views/Team.vue'
 
 const routes = [
     {
