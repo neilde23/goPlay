@@ -5,6 +5,8 @@ import SignUp from '@/views/SignUp.vue'
 import Visitor from '@/views/Visitor.vue'
 import Player from '@/views/Player.vue'
 import Manager from '@/views/Manager.vue'
+import About from '@/views/About.vue'
+// import Team from '@/views/Team.vue'
 
 const routes = [
     {
@@ -31,6 +33,16 @@ const routes = [
         path: '/manager',
         name: 'Manager',
         component: Manager
+    },
+    {
+        path: '/about',
+        name: 'About',
+        component: About
+    },
+    {
+        path: '/team',
+        name: 'Team',
+        component: Team
     }
 ];
 
