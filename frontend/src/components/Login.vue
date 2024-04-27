@@ -54,7 +54,7 @@
                     });
 
                     // redirect to the player page
-                    this.$router.push('/home');
+                    this.$router.push('/');
 
                 } catch (error) {
                     console.error('Error logging in player:', error);
