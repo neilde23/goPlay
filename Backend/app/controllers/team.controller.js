@@ -1,4 +1,4 @@
-const Team = require("../models/team.model");
+const Team = require("../models/team.model.js");
 const Participate = require("../models/participate.model.js");
 const Invite = require("../models/invite.model.js");
 

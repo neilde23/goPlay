@@ -1,6 +1,7 @@
 const express = require("express");
 const { json, urlencoded } = require("body-parser");
 const cors = require("cors");
+const matchRouter = require("./app/routes/match.routes");
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.use(urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to goPlay application." });
 });
+
+app.use("/api/match", matchRouter);
 
 require("./app/routes/event.routes")(app);
 require("./app/routes/game.routes")(app);
