@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start-api": "node ../Backend/server.js",
-    "preview": "vite preview",
-    "start": "concurrently \"npm run dev\" \"npm run start-api\""
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
@@ -21,7 +19,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "concurrently": "^8.2.2",
     "vite": "^5.1.6"
   }
 }
