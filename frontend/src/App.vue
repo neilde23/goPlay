@@ -1,7 +1,9 @@
 <template>
-    <Header />
-    <router-view/>
-    <Bottom />
+
+        <Header />
+        <router-view/>
+        <Bottom/>
+
 </template>
 
 <script setup>
@@ -25,6 +27,8 @@
     * {
         font-size: small;
     }
+
+
 
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;

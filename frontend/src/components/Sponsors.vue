@@ -1,19 +1,24 @@
 <template>
     <div class="container">
-        <TeamClass/>
+        <h1>Sponsors</h1>
+        <p>goPlay is proud to be sponsored by the following companies:</p>
+        <ul>
+            <li>Company A</li>
+            <li>Company B</li>
+            <li>Company C</li>
+            <li>Company D</li>
+        </ul>
     </div>
+
+
 </template>
 
 <script>
-//jugez pas trop fort svp je sais pas ce que je fais
 
-    import TeamClass from '../components/TeamClass.vue';
     export default {
-        name: 'Team',
-        components: {
-            TeamClass
-        }      
-      }
+        name: 'Sponsors'
+    }
+
 </script>
 
 <style scoped>
@@ -26,5 +31,4 @@
         padding-top : 20px;
         padding-bottom: 20px;
     }
-
 </style>
