@@ -16,6 +16,13 @@
 </script>
 
 <style scoped>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap : 20px;
+    }
     .c1 {
         width: 650px;
         top: 0px;
@@ -24,6 +31,7 @@
 
     .c2 {
         left: 0px;
+        padding-bottom: 20px;
     }
 
     article {
