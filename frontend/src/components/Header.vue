@@ -5,18 +5,19 @@
             <router-link class="logo" to="/"><img src="../assets/logo.png" alt="Logo"></router-link>
             <div class="nav-links">
                 <router-link class="nav-link fw-bold py-1 px-0" to="/">Home</router-link>
-                <router-link class="nav-link fw-bold py-1 px-0" to="/player">Player area</router-link>
-                <router-link class="nav-link fw-bold py-1 px-0" to="/manager">Manager area</router-link>
-                <router-link class="nav-link fw-bold py-1 px-0" to="/team">My team</router-link>
+                <div v-if="$store.state.userCredentials" class="login-pages">
+                    <router-link class="nav-link fw-bold py-1 px-0" to="/player">Player area</router-link>
+                    <router-link class="nav-link fw-bold py-1 px-0" to="/manager">Manager area</router-link>
+                </div>
                 <router-link class="nav-link fw-bold py-1 px-0" to="/about">About</router-link>
             </div>
             <div class="user-info">
                 <!-- Icon for profile -->
-                <router-link class="nav-link fw-bold py-1 px-0" to="/signup"><a href="#"><i class="fas fa-user"></i></a></router-link>
+                <router-link class="nav-link fw-bold py-1 px-0" to="/signup"><i class="fas fa-user"></i></router-link>
                 <!-- User's name -->
                 <span></span>
                 <!-- Icon for notifications -->
-                <router-link class="nav-link fw-bold py-1 px-0" to="/"><a href="#"><i class="fas fa-bell"></i></a></router-link>
+                <router-link class="nav-link fw-bold py-1 px-0" to="/"><i class="fas fa-bell"></i></router-link>
             </div>
         </nav>
     </header>
@@ -50,6 +51,11 @@ import router from '@/router';
     .nav-links {
         display: flex;
         justify-content: space-between;
+    }
+
+    .nav-links .login-pages {
+        display: flex;
+        margin: 0 20px;
     }
 
     nav .logo {

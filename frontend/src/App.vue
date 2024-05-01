@@ -1,7 +1,7 @@
 <template>
     <Header />
     <router-view/>
-    <Bottom />
+    <Bottom class="bottom"/>
 </template>
 
 <script setup>
@@ -18,6 +18,10 @@
 
     function scrollToTarget2() {
         targetElement2.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
 
@@ -40,5 +44,11 @@
     body {
         margin: 0;
         padding: 0;
+    }
+
+    .bottom {
+        bottom: 0;
+        width: 100%;
+        /* position: fixed; */
     }
 </style>

@@ -15,7 +15,8 @@
     "sweetalert2": "^11.10.8",
     "vue": "^3.4.23",
     "vue-router": "^4.0.13",
-    "vue-template-compiler": "^2.7.16"
+    "vue-template-compiler": "^2.7.16",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

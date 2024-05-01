@@ -32,19 +32,16 @@
         methods: {
             async submitForm() {
                 try {
-                    const email = document.getElementById('email').value; // Récupérer la valeur du champ email
-                    const password = document.getElementById('password').value;
-
                     // Effectuer la requête POST avec les données du formulaire
                     const response = await axios.post('http://localhost:3000/api/players/login', {
-                        email: email,
-                        password: password
+                        email: this.player.email,
+                        password: this.player.password
                     });
 
                     console.log(response.data); // Afficher la réponse du serveur
 
-                    // save the token in the local storage
-                    localStorage.setItem('token', response.data.id);
+                    // save the user credentials in the store
+                    this.$store.dispatch('setUserCredentials', response.data);
 
                     // notify the user that he is logged in successfully
                     Swal.fire({
