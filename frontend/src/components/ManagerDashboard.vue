@@ -64,7 +64,7 @@
             </div>
         </div>
     </div>
-    <TeamFormPopup :show="showPopup" @create="createTeam" @close="closePopup" />
+    <TeamFormPopup :show="showPopup" @create="createTeam" @close="closePopup" style="position: fixed; z-index: 1;"/>
     </div>
 </template>
 
