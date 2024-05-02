@@ -21,6 +21,9 @@ module.exports = app => {
     // Retrieve a single Player with id
     router.get("/:id", players.findOne);
 
+    // Retrieve a single Player with pseudo
+    router.get("/pseudo/:pseudo", players.findOneByPseudo);
+
     // Retrieve all tryToJoin of a Player
     router.get("/tryToJoin/:id", players.findTeamsTryToJoin);
 

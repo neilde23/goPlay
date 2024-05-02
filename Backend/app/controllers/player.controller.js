@@ -132,6 +132,22 @@ exports.findOne = (req, res) => {
     });
 };
 
+exports.findOneByPseudo = (req, res) => {
+    Player.findByPseudo(req.params.playerPseudo, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found Player with pseudo ${req.params.playerPseudo}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving Player with pseudo " + req.params.playerPseudo
+                });
+            }
+        } else res.send(data);
+    });
+};
+
 exports.findTeamsTryToJoin = (req, res) => {
     Player.findTeamsTryToJoin(req.params.playerId, (err, data) => {
         if (err) {

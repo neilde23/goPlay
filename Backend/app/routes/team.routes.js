@@ -24,11 +24,14 @@ module.exports = app => {
     // Retrieve all Teams
     router.get("/", teams.findAll);
 
+    // Retrieve all Teams of a Manager
+    router.get("/manager/:id", teams.findByManager);
+
+    // Retrieve teams with a name
+    router.get("/name/:name", teams.findByName);
+
     // Retrieve a single Team with id
     router.get("/:id", teams.findOne);
-
-    // Retrieve the manager of a Team
-    router.get("/manager/:id", teams.findManager);
 
     // Retrieve all Players of a Team
     router.get("/players/:id", teams.findPlayers);

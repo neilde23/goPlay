@@ -58,6 +58,44 @@ Team.findById = (teamId, result) => {
     });
 };
 
+Team.findByName = (teamName, result) => {
+    sql.query(`SELECT * FROM Team WHERE name = '${teamName}'`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            console.log("found team: ", res[0]);
+            result(null, res[0]);
+            return;
+        }
+
+        // not found Team with the name
+        result({ kind: "not_found" }, null);
+    });
+};
+
+Team.findByManager = (idManager, result) => {
+    sql.query(`SELECT * FROM Team WHERE idManager = ${idManager}`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            console.log("found team: ", res);
+            result(null, res);
+            return;
+        }
+
+        // not found Team with the id
+        result({ kind: "not_found" }, null);
+    });
+};
+
 Team.getAll = result => {
     sql.query("SELECT * FROM Team", (err, res) => {
         if (err) {

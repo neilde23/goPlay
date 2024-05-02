@@ -177,6 +177,39 @@ exports.findOne = (req, res) => {
     });
 };
 
+exports.findByName = (req, res) => {
+    Team.findByName(req.params.name, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Team not found with name ${req.params.teamName}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving Team with name " + req.params.teamName
+                });
+            }
+        } else res.send(data);
+    });
+};
+
+exports.findByManager = (req, res) => {
+
+    Team.findByManager(req.params.id, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Team not found with Manager id ${req.params.idManager}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving Team with Manager id " + req.params.idManager
+                });
+            }
+        } else res.send(data);
+    });
+};
+
 exports.update = (req, res) => {
     if (!req.body) {
         res.status(400).send({
