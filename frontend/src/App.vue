@@ -1,6 +1,9 @@
 <template>
     <Header />
     <router-view/>
+    <div class="scroll-to-top" @click="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
     <Bottom class="bottom"/>
 </template>
 
@@ -49,7 +52,28 @@
     .bottom {
         bottom: 0;
         width: 100%;
-        margin-top: 20px;
-        /* position: fixed; */
+        position: fixed;
+        background-color: black;
     }
+
+    .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #5C6BC0;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .scroll-to-top i {
+        font-size: 20px;
+    }
+
+    .scroll-to-top:hover {
+        background-color: #3949AB;
+    };
 </style>

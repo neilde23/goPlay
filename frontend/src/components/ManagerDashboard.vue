@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-    <div class="title" style="position: fixed; top: 100px; width: 100%; z-index: 1;">
+    <div class="title">
         <h1>Manager</h1>
         <p>Welcome to your dashboard</p>
     </div>
-    <div class="top-container" style="position: fixed; top: 200px; width: 100%; z-index: 1;">
+    <div class="top-container">
         <div class="tabs">
             <button :class="{ activeTab: activeTab === 'teams' }" @click="changeTab('teams')">Teams</button>
             <button :class="{ activeTab: activeTab === 'matches' }" @click="changeTab('matches')">Matches</button>
@@ -31,15 +31,17 @@
     <div class="content">
         <div v-if="activeTab === 'teams'" class="display-list">
             <h2>My teams</h2>
-            <div class="team-box" v-for="(team, index) in displayedTeams" :key="team.id">
-                <div class="team-info">
-                    <h2>{{ team.name }}</h2>
-                    <h3>Description :</h3>
-                    <p>{{ team.description }}</p>
-                    <router-link to="/team" class="linked-btn">Manage team</router-link>
-                </div>
-                <div class="team-image">
-                    <img src="../assets/7.jpeg" alt="Team Image">
+            <div class="scrollable-list">
+                <div class="team-box" v-for="(team, index) in displayedTeams" :key="team.id">
+                    <div class="team-info">
+                        <h2>{{ team.name }}</h2>
+                        <h3>Description :</h3>
+                        <p>{{ team.description }}</p>
+                        <router-link to="/team" class="linked-btn">Manage team</router-link>
+                    </div>
+                    <div class="team-image">
+                        <img src="../assets/7.jpeg" alt="Team Image">
+                    </div>
                 </div>
             </div>
             <div v-if="!showLess && teams.length > displayedTeams.length" class="center-btn">
@@ -51,15 +53,17 @@
         </div>
         <div v-else-if="activeTab === 'matches'" class="display-list">
             <h2>My matches</h2>
-            <div class="match-box" v-for="(match, index) in matches" :key="index">
-                <div class="match-info">
-                    <h2>{{ match.title }}</h2>
-                    <h3>Opponent: {{ match.opponent }}</h3>
-                    <p>Date: {{ match.date }}</p>
-                    <router-link to="/match" class="linked-btn">Manage match</router-link>
-                </div>
-                <div class="match-image">
-                    <img src="../assets/8.jpeg" alt="Match Image">
+            <div class="scrollable-list">
+                <div class="match-box" v-for="(match, index) in matches" :key="index">
+                    <div class="match-info">
+                        <h2>{{ match.title }}</h2>
+                        <h3>Opponent: {{ match.opponent }}</h3>
+                        <p>Date: {{ match.date }}</p>
+                        <router-link to="/match" class="linked-btn">Manage match</router-link>
+                    </div>
+                    <div class="match-image">
+                        <img src="../assets/8.jpeg" alt="Match Image">
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,6 +165,11 @@ export default {
         },
         filterTeams(searchText) {
             console.log("Search text:", searchText);
+            if (searchText === '') {
+                this.displayedTeams = this.teams.slice(0, 6); // Reset displayed teams
+                this.showLess = false; // Reset "Show Less" button
+                return;
+            }
             const filteredTeams = this.teams.filter(team => {
             return team.name.toLowerCase().includes(searchText.toLowerCase());
             });
@@ -170,10 +179,12 @@ export default {
         filterMatches(searchText) {
             console.log("Search text:", searchText);
             if (searchText === '') {
-            this.matches = [ // Sample match data
-                { title: 'Match 1', opponent: 'Team 1', date: '01/01/2022' },
-                { title: 'Match 2', opponent: 'Team 2', date: '02/01/2022' }
-            ];}
+                this.matches = [ // Sample match data
+                    { title: 'Match 1', opponent: 'Team 1', date: '01/01/2022' },
+                    { title: 'Match 2', opponent: 'Team 2', date: '02/01/2022' }
+                ];
+                return;
+            }
             // Filter matches based on title
             const filteredMatches = this.matches.filter(match => {
             return match.title.toLowerCase().includes(searchText.toLowerCase());
@@ -192,12 +203,14 @@ export default {
     margin-top: 20px;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 }
 
 .title {
     margin-top: 20px;
     text-align: center;
     font-style: italic;
+    width: 100%;
 }
 
 .top-container {
@@ -273,11 +286,15 @@ export default {
 .content {
     display: flex;
     justify-content: space-between;
-    margin-top: 200px;
 }
 
 .display-list {
     width: 100%;
+}
+
+.scrollable-list {
+    max-height: 40vh;
+    overflow-y: auto;
 }
 
 .display-list h2 {
@@ -294,6 +311,8 @@ export default {
     margin: 10px;
     background-color: transparent;
     transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
 .team-box h2,
@@ -316,12 +335,6 @@ export default {
     font-size: 0.9em;
     font-weight: lighter;
     margin-left: 10px;
-}
-
-.team-box,
-.match-box {
-    display: flex;
-    align-items: center;
 }
 
 .team-info,
