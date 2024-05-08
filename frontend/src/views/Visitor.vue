@@ -21,6 +21,10 @@
                         Manager Area
                         <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
                     </button></router-link>
+                    <router-link to="/team"><button id="team-button" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+                        Team Area
+                        <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
+                    </button></router-link>
                 </div>
             </div>
             </div>
@@ -63,6 +67,15 @@
 
     #manager-button:hover {
         background-color: #751500
+    }
+
+    #team-button {
+        background-color: #00008B;
+        color: white;
+    }
+
+    #team-button:hover {
+        background-color: #001565
     }
 
     #search-bar

@@ -1,4 +1,7 @@
 <template>
+    <div id="teamtitle">
+        <h2>Currently in {{ datateams.length }} teams</h2>
+    </div>
     <div class="teams" v-for="team in datateams">
         <div id="name">{{ team.name }}</div>
         <div id="desc">{{ team.description }}</div>
@@ -31,12 +34,30 @@
 </script>
 
 <style>
+
+    #teamtitle {
+        padding: 1em;
+        text-align: center;
+        color: #ccc;
+        font: 1.2rem "Verdana" bold;
+    }
+
     .teams {
         width: 29%;
-        border: 1px solid #ccc;
+        border: 2px solid #ccc;
         border-radius: 5px;
         background-color: transparent;
         padding: 0.5em;
+        margin-left: 2%;
+    }
+
+    .teams:hover {
+        width: 31%;
+        border: 5px solid #fff;
+        border-radius: 5px;
+        background-color: transparent;
+        padding: 0.5em;
+        margin-left: 1%;
     }
 
     #name {
