@@ -1,7 +1,6 @@
 <template>
     <div class="signup">
         <h1>Login</h1>
-        <CustomComponent />
         <form @submit.prevent="submitForm" class="form-style">
             <div>
                 <label for="email">Email:</label>
@@ -12,6 +11,7 @@
                 <input type="password" id="password" v-model="player.password" required>
             </div>
             <button type="submit">Sign In</button>
+            <router-link to="/signup" class="nav-link">Don't have an account? Sign Up</router-link>
         </form>
     </div>  
 </template>
@@ -108,6 +108,17 @@ h1{
 
 .form-style button:hover {
     background-color: #3949AB;
+}
+
+.nav-link {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: #5C6BC0;
 }
 
 </style>

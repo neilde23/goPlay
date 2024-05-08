@@ -13,7 +13,10 @@
             </div>
             <div class="user-info">
                 <!-- Icon for profile -->
-                <router-link class="nav-link fw-bold py-1 px-0" to="/signup"><i class="fas fa-user"></i></router-link>
+                <router-link class="nav-link fw-bold py-1 px-0" :to="$store.state.userCredentials ? '/profile' : '/signin'">
+                    <i class="fas fa-user"></i>
+                    {{ $store.state.userCredentials ? $store.state.userCredentials.pseudo : 'Login' }}
+                </router-link>
                 <!-- User's name -->
                 <span></span>
                 <!-- Icon for notifications -->

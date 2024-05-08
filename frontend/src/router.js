@@ -7,6 +7,7 @@ import Player from '@/views/Player.vue'
 import Manager from '@/views/Manager.vue'
 import About from '@/views/About.vue'
 import Team from '@/views/Team.vue'
+import Profile from '@/views/Profile.vue'
 
 const routes = [
     {
@@ -43,6 +44,11 @@ const routes = [
         path: '/team',
         name: 'Team',
         component: Team
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile
     }
 ];
 

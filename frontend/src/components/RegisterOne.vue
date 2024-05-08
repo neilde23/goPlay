@@ -1,7 +1,6 @@
 <template>
     <div class="signin">
     <h1>Sign Up</h1>
-        <CustomComponent />
         <form @submit.prevent="submitForm" class="form-style">
             <div>
                 <label for="pseudo">Pseudo:</label>
@@ -16,7 +15,7 @@
                 <input type="password" id="password" v-model="player.password" required>
             </div>
             <button type="submit">Sign Up</button>
-            <router-link to="/signin" class="nav-link"> Already have an account? </router-link>
+            <router-link to="/signin" class="nav-link">Already have an account? Sign In</router-link>
         </form>
     </div>
 </template>
@@ -74,12 +73,12 @@
 
 <style scoped>
 h1{
-    padding : 20px;
+    padding : 10px;
     text-align : center;
 }
 
 .form-style {
-    width: 300px;
+    width: 500px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -96,7 +95,7 @@ h1{
 .form-style input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
@@ -123,6 +122,7 @@ h1{
 
 .nav-link:hover {
     color: #5C6BC0;
+    text-decoration: underline;
 }
 
 </style>

@@ -7,6 +7,9 @@ export default createStore({
     mutations: {
         setUserCredentials(state, credentials) {
             state.userCredentials = credentials;
+        },
+        removeUserCredentials() {
+            state.userCredentials = null;
         }
     },
     actions: {
