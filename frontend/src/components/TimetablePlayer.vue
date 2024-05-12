@@ -81,7 +81,7 @@
 
   .timetable {
       padding: 20px 25px;
-      background-color: #313840;
+      background-color: rgba(7, 7, 65, 0.6);
       border-radius: 20px;
 
   }

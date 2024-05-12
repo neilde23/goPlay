@@ -1,0 +1,76 @@
+<template>
+    <div class="activity">
+        <div class="title">Latest Activity</div>
+        <div class="row" v-for="actionDesc in actionDescriptions">
+            <div class="d activity-color" :style="{ backgroundColor: actionDesc.action.color }"></div>
+            <div class="d">
+                <span>{{ actionDesc.action.label }}</span>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+    import { ref } from 'vue';
+
+    const actionsEnum = {
+        CHAT_MANAGER: { color: "#FF0000", label: "Manager" },
+        CHAT_TEAM: { color: "#00FF00", label: "Team" },
+        MATCH: { color: "#0000FF", label: "Match" },
+        EVENT: { color: "#FFFF00", label: "Event" },
+        TIMETABLE: { color: "#800080", label: "Timetable" },
+        IMPORTANT: { color: "#FFA500", label: "Important" }
+    };
+
+
+    const actionDescriptions = ref([
+        { action: actionsEnum.CHAT_MANAGER, description: "This action is related to managing chats." },
+        { action: actionsEnum.CHAT_TEAM, description: "This action involves communication within a team." },
+        { action: actionsEnum.MATCH, description: "This action is related to a match event." },
+        { action: actionsEnum.EVENT, description: "This action is related to an event." },
+        { action: actionsEnum.TIMETABLE, description: "This action involves managing a timetable." },
+        { action: actionsEnum.IMPORTANT, description: "This action is marked as important." },
+        { action: actionsEnum.CHAT_MANAGER, description: "Managing chat is crucial for effective communication." },
+        { action: actionsEnum.MATCH, description: "Matches are central to the competition." },
+        { action: actionsEnum.EVENT, description: "Events add value and engagement." },
+        { action: actionsEnum.IMPORTANT, description: "Prioritizing important actions is key for success." }
+    ]);
+
+</script>
+
+<style scoped>
+    * {
+        
+    }
+
+    .row {
+        margin-top: 4px;
+        border-radius: 4px;
+        background-color: rgb(11, 11, 87);
+        margin-left: 0px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        
+    }
+    .activity {
+        padding: 20px 15px;
+        background-color: rgba(7, 7, 65, 0.6);
+        border-radius: 10px;
+        padding-bottom: 10px;
+        height: 400px;
+    }
+
+    .d {
+        padding: 0;
+        padding-left: 5px;
+        padding-bottom: 4px;
+        padding-top: 4px;
+    }
+
+    .activity-color {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        width: 5px;
+    }
+
+</style>

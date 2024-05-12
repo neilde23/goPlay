@@ -44,7 +44,7 @@ class Match {
             // à remplir
         }*/
 
-        query += ' ORDER BY m.dateBegin DESC';
+        query += ' ORDER BY m.dateBegin ASC';
     
         try 
         {
