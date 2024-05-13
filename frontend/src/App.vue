@@ -49,8 +49,7 @@
     .bottom {
         bottom: 0;
         width: 100%;
-        position: fixed;
-        background-color: black;
+        position:relative;
     }
 
     .scroll-to-top {
