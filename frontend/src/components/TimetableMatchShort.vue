@@ -17,6 +17,9 @@
             </div>
             <div class="col">{{ row.eventName }}</div>
         </div>
+        <div class="container no-matches" v-if="matchesTest.length === 0">
+            <p>There are currently no matches</p>
+        </div>
     </div>
 </template>
   
@@ -26,7 +29,7 @@
 
     const selectedDate = ref(getTodayDate());
     const selectedGame = ref('');
-    const matchesTest = ref();
+    const matchesTest = ref([]);
     const maxItems = 10;
 
     async function fetchMatches() {
@@ -102,7 +105,8 @@
         padding: 20px 25px;
         background-color: rgba(7, 7, 65, 0.6);
         border-radius: 10px;
-        width: 420px;
+        width: 100%;
+        min-height: 40%;
     }
 
     .date-picker {
@@ -134,6 +138,16 @@
     .col-2 {
         padding-left: 5px;
     }
+
+    .no-matches {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+
+    }
+
+    
    
 </style>
   

@@ -1,6 +1,6 @@
 <template>
     <div class="activity">
-        <div class="title">Latest Activity</div>
+        <div class="title-player-dashboard">Latest Activity</div>
         <div class="row" v-for="actionDesc in actionDescriptions">
             <div class="d activity-color" :style="{ backgroundColor: actionDesc.action.color }"></div>
             <div class="d">
@@ -39,9 +39,6 @@
 </script>
 
 <style scoped>
-    * {
-        
-    }
 
     .row {
         margin-top: 4px;
@@ -55,9 +52,10 @@
     .activity {
         padding: 20px 15px;
         background-color: rgba(7, 7, 65, 0.6);
-        border-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
         padding-bottom: 10px;
-        height: 400px;
+        flex-grow: 1;
     }
 
     .d {
@@ -65,6 +63,10 @@
         padding-left: 5px;
         padding-bottom: 4px;
         padding-top: 4px;
+    }
+
+    .d span {
+        padding-left: 8px;
     }
 
     .activity-color {

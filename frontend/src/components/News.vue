@@ -1,28 +1,26 @@
 <template>
     <div class="news">
-        <div class="title">Latest Top News</div>
-        <div class="row" v-for="(news, index) in newsList" >
-            <div class="col">
-                <div class="news-title" style="font-size: small;">
-                    <p v-if="news.title <= maxLength">{{ news.title }}</p>
-                    <p v-else>{{ news.title.slice(0, maxLength) }}...</p>
+        <div class="title-player-dashboard">Latest News</div>
+        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner">
+                <div 
+                    v-for="(news, index) in newsList" 
+                    :key="index" 
+                    :class="{ 'carousel-item': true, 'active': index === 0 }">
+                    <div class="news-img" :style="{ 'background-image': 'url(' + news.imageLink + ')' }"></div>
+                    <div class="carousel-caption">
+                        <p>{{ news.title.slice(0, maxLength) }}...</p>
+                     </div>
                 </div>
-                <div class="news-date">
-                    <span>{{ news.date }}</span>
-
-                </div>
-            </div>
-            <div class="col-2 img-pos">
-                <img :src="news.imageLink" alt="" class="news-img">
-
             </div>
         </div>
+        <div class="d-flex justify-content-center"><hr width="70%"></div>
+       
     </div>
-
 </template>
 
 <script setup>
-    const maxLength = 30;
+    const maxLength = 50;
     const newsList = [
         {
             title: "FURIA defeat bad news kangaroos to stay alive in pro league",
@@ -30,12 +28,12 @@
             imageLink: "https://img-cdn.hltv.org/gallerypicture/ouzz5xh1R3Ogd2NvKUQAcj.jpg?auto=compress&fm=avif&ixlib=java-2.1.0&m=%2Fm.png&mw=213&mx=39&my=947&q=75&w=1600&s=2689e2021f93134b960ebc4d4bffc886"
         },
         {
-            title: "COMPLEXITY AND NAVI BOOK EPL PLAYOFF SPOTS",
+            title: "COMPLEXITY and NAVI book EPL playoff spots",
             date: "2024-05-02",
             imageLink: "https://img-cdn.hltv.org/gallerypicture/aNaidhPxcrsSfXQ6xNOIAZ.jpg?auto=compress&fm=avif&ixlib=java-2.1.0&m=%2Fm.png&mw=213&mx=39&my=947&q=75&w=1600&s=fd5e33f68222c816aa2c42fbfb78e571"
         },
         {
-            title: "SAW PART WAYS WITH NABOWOW",
+            title: "SAW part ways with nabowow",
             date: "2024-05-02",
             imageLink: "https://img-cdn.hltv.org/gallerypicture/a_WDO4VtWkUf0I-GMWowlh.jpg?auto=compress&fm=avif&ixlib=java-2.1.0&m=%2Fm.png&mw=213&mx=39&my=947&q=75&w=1600&s=84c940361a1f212e31481c0ccbc6453f"
         },
@@ -90,45 +88,43 @@
 </script>
 
 <style scoped>
-    
-
-    .title {
-        margin-left: 5px;
-    }
 
     .news {
         padding: 20px 15px;
         background-color: rgba(7, 7, 65, 0.6);
-        border-radius: 10px;
-        padding-bottom: 10px;
-        overflow:scroll;
-        height: 339px;
-        margin-bottom: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         width: 205px;
     }
+
     .news-img {
-        width: 50px;
-        height: 50px;
-        border-radius: 5px;
+        height: 280px;
+        width: auto;
+        background-size: cover;
+        background-position: 50%;
+        border-radius: 10px;
+        border: 1px solid blue;
+        filter: brightness(50%)
     }
 
-    .row {
-        margin-top: 4px;
-        border-radius: 6px;
-        background-color: rgb(11, 11, 87);
-        margin-left: 0px;
-        margin-right: 0px;
-        padding-top: 5px;
+    .carousel-caption p{
+        color: white;
+    }
+
+    .carousel-caption {
+        text-align: left;
         padding-bottom: 5px;
-        flex-wrap: nowrap;
-        overflow: hidden;
+        left: 0;
+        right: 0;
+        padding-left: 10px;
+        padding-right: 5px;
     }
-    
-    .img-pos {
-        display:flex;
-        justify-content: right;
-        
+
+    hr {
+        margin-top: 40px;
+        margin-bottom: 0px;
     }
+
 
 
 

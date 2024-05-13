@@ -1,23 +1,21 @@
 <template>
     <article>
-        <div class="row">
+        <div class="row separation">
             <div class="col">
-                <div class="c2">
-                    <TimetableMatchShort/>
-                </div> 
+                <TimetableMatchShort/>
             </div>
             <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <EventList/>
-                        <PlayerStats/>
+                <div class="row separation">
+                    <div class="col test">
+                        <div class="separation"><EventList/></div>
+                        <div><PlayerStats/></div>
                     </div>
-                    <div class="col">
+                    <div class="col test">
                         <News/>
                         <TeamActivity/>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row separation">
                     <div class="col">
                         <div class="c1">
                             <TimetablePlayer/>
@@ -40,12 +38,13 @@
 </script>
 
 <style scoped>
+
     .c1 {
         width: 650px;
     }
 
-    .row {
-        margin-bottom: 10px;
+    .separation {
+        margin-bottom: 20px;
     }
 
     article {
@@ -53,5 +52,27 @@
         min-height: 500px;
     }
 
+    .test {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-test {
+        font-family: Marker Felt, fantasy
+    }
+
+    .row {
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+
+</style>
+
+<style>
+    .title-player-dashboard {
+        font-family: Marker Felt, fantasy;
+        margin-bottom: 5px;
+        padding-left: 8px;
+    }
 
 </style>

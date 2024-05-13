@@ -1,17 +1,17 @@
 <template>
     <div class="stats">
-        <div class="tit">Ingame Stats</div>
-        <div class="row card-1">
+        <div class="title-player-dashboard">Ingame Stats</div>
+        <div class="card-1">
             <canvas class="my-4 w-100" id="myChart"></canvas>
         </div>
-        <div class="row card-12">
-            <div class="row w-100">
+        <div class="card-12">
+            <div class="row s1">
                 <div class="col">Sats</div>
                 <div class="col-2">Value</div>
                 <div class="col-2">Avg</div>
             </div>
             <div 
-                class="row s1 w-100"
+                class="row s1"
                 v-for="(value, key, index) in recentPlayerMatches[indexGraph]" 
                 :class="{ 'active': index === activeRowIndex }"
                 :key="index" @click="updateGraph(key, index)"
@@ -207,11 +207,12 @@
         border-radius: 10px;
         width: 420px;
         padding-bottom: 10px;
+        flex-grow: 1;
 
     }
 
-    #myChart {
-
+    .row {
+        margin: 0;
     }
 
     .card-12 {
@@ -225,7 +226,8 @@
     }
 
     .active {
-        border: 1px solid red;
+        border: 2px solid #007bff;
+        border-radius: 5px;
     }
 
 

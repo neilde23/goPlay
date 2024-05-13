@@ -1,6 +1,6 @@
 <template>
     <div class="event">
-        <div class="title">Top tournaments</div>
+        <div class="title-player-dashboard">Top tournaments</div>
         <div class="row" v-for="(event, index) in eventList">
             <div class="event-banner" v-if="index === 0" :style="{ 'background-image': 'url(' + event.bannerPath + ')' }">
             </div>
@@ -65,7 +65,7 @@
         date: "2024-07-20",
         status: "Terminé",
         cashPrize: 2000,
-        iconPath: "icons/icon2.png",
+        iconPath: "https://files.bo3.gg/uploads/tournament/2671/image/150x150-698a7c74c2506ab2dadf58101d7984a3.webp",
         bannerPath: "banners/banner2.png"
     },
     {
@@ -73,7 +73,7 @@
         date: "2024-08-10",
         status: "À venir",
         cashPrize: 1500,
-        iconPath: "icons/icon3.png",
+        iconPath: "https://files.bo3.gg/uploads/tournament/1594/image/150x150-ccbe485ffd2125880e95e76f9a5f8fcc.webp",
         bannerPath: "banners/banner3.png"
     }
     ];
@@ -157,6 +157,10 @@
         border: none;
     }
 
+    button {
+        background-color: #007bff;
+    }
+
     ul {
         padding: 0;
         margin: 0;
@@ -169,9 +173,5 @@
 
     li > span {
         font-size: 70%;
-    }
-
-    .title {
-        font-family: Marker Felt, fantasy
     }
 </style>
