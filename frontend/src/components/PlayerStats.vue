@@ -1,10 +1,10 @@
 <template>
-    <div class="stats">
+    <div class="stats primary-color">
         <div class="title-player-dashboard">Ingame Stats</div>
         <div class="card-1">
             <canvas class="my-4 w-100" id="myChart"></canvas>
         </div>
-        <div class="card-12">
+        <div class="card-12 secondary-color">
             <div class="row s1">
                 <div class="col">Sats</div>
                 <div class="col-2">Value</div>
@@ -203,7 +203,6 @@
 <style scoped>
     .stats {
         padding: 20px 15px;
-        background-color: rgba(7, 7, 65, 0.6);
         border-radius: 10px;
         width: 420px;
         padding-bottom: 10px;
@@ -217,7 +216,6 @@
 
     .card-12 {
         border-radius: 8px;
-        background-color: rgb(11, 11, 87);
         margin-bottom: 10px;
     }
 

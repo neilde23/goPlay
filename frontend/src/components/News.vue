@@ -14,8 +14,6 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center"><hr width="70%"></div>
-       
     </div>
 </template>
 
@@ -89,21 +87,13 @@
 
 <style scoped>
 
-    .news {
-        padding: 20px 15px;
-        background-color: rgba(7, 7, 65, 0.6);
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        width: 205px;
-    }
-
     .news-img {
         height: 280px;
         width: auto;
         background-size: cover;
         background-position: 50%;
         border-radius: 10px;
-        border: 1px solid blue;
+        border: 1px solid black;
         filter: brightness(50%)
     }
 
@@ -118,11 +108,6 @@
         right: 0;
         padding-left: 10px;
         padding-right: 5px;
-    }
-
-    hr {
-        margin-top: 40px;
-        margin-bottom: 0px;
     }
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="timetable">
+    <div class="timetable primary-color">
         <div class="d-flex justify-content-center">
             <ul class="filters">
                 <div class="date-picker d-inline-flex">
@@ -9,7 +9,7 @@
                 </div>
             </ul>
         </div>
-        <div class="row card-row" v-for="row in matchesTest">
+        <div class="row card-row secondary-color" v-for="row in matchesTest">
             <div class="col-2 text-center">{{ row.dateBegin }}</div>
             <div class="col">
                 <div>{{ row.t1name }}</div>
@@ -89,7 +89,6 @@
     .row {
         margin-top: 2px;
         border-radius: 8px;
-        background-color: rgb(11, 11, 87);
         height: 70px;
         align-items: center;
         margin-left: 0px;
@@ -103,7 +102,6 @@
 
     .timetable {
         padding: 20px 25px;
-        background-color: rgba(7, 7, 65, 0.6);
         border-radius: 10px;
         width: 100%;
         min-height: 40%;

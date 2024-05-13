@@ -1,7 +1,7 @@
 <template>
-    <div class="event">
+    <div class="event primary-color">
         <div class="title-player-dashboard">Top tournaments</div>
-        <div class="row" v-for="(event, index) in eventList">
+        <div class="row secondary-color" v-for="(event, index) in eventList">
             <div class="event-banner" v-if="index === 0" :style="{ 'background-image': 'url(' + event.bannerPath + ')' }">
             </div>
             <div class="row row-info">
@@ -30,16 +30,16 @@
                 <div class="button-list" v-if="index ===0">
                     <hr style="border-top: 2px solid black; margin-bottom: 0px;">
                     <div class="b">
-                        <button>overview</button>
-                        <button>matches</button>
-                        <button>results</button>
+                        <button class="button-color">overview</button>
+                        <button class="button-color">matches</button>
+                        <button class="button-color">results</button>
                     </div>
                     
                 </div>
             </div>
         </div>
         <div class="redirect">
-            <button>All tournaments</button>
+            <button class="button-color">All tournaments</button>
         </div>
     </div>
 
@@ -85,7 +85,6 @@
 
     .event {
         padding: 20px 15px;
-        background-color: rgba(7, 7, 65, 0.6);
         border-radius: 10px;
         width: 420px;
         padding-bottom: 10px;
@@ -94,7 +93,6 @@
     .row {
         margin-top: 2px;
         border-radius: 8px;
-        background-color: rgb(11, 11, 87);
         margin-left: 0px;
         margin-right: 0px;
         
@@ -155,10 +153,6 @@
         font-size: small;
         border-radius: 5px;
         border: none;
-    }
-
-    button {
-        background-color: #007bff;
     }
 
     ul {

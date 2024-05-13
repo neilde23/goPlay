@@ -11,8 +11,7 @@
                         <div><PlayerStats/></div>
                     </div>
                     <div class="col test">
-                        <News/>
-                        <TeamActivity/>
+                        <NewsActivity/>
                     </div>
                 </div>
                 <div class="row separation">
@@ -30,9 +29,8 @@
 <script setup>
     import TimetablePlayer from '@/components/TimetablePlayer.vue'
     import TimetableMatchShort from '@/components/TimetableMatchShort.vue'
-    import News from '@/components/News.vue'
     import EventList from '@/components/EventList.vue'
-    import TeamActivity from '@/components/TeamActivity.vue'
+    import NewsActivity from '@/components/NewsActivity.vue'
     import PlayerStats from '@/components/PlayerStats.vue'
 
 </script>
@@ -69,10 +67,26 @@
 </style>
 
 <style>
+    /*#302b63*/
     .title-player-dashboard {
         font-family: Marker Felt, fantasy;
         margin-bottom: 5px;
         padding-left: 8px;
+    }
+
+    .primary-color {
+        background-color: #302b63;
+        border: 2px solid #1d1a3e;
+
+    }
+
+    .secondary-color {
+        background-color: #28235e;
+
+    }
+
+    .button-color {
+        background-color: #453d91;
     }
 
 </style>

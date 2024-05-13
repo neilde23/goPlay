@@ -1,7 +1,7 @@
 <template>
     <div class="activity">
         <div class="title-player-dashboard">Latest Activity</div>
-        <div class="row" v-for="actionDesc in actionDescriptions">
+        <div class="row secondary-color" v-for="actionDesc in actionDescriptions">
             <div class="d activity-color" :style="{ backgroundColor: actionDesc.action.color }"></div>
             <div class="d">
                 <span>{{ actionDesc.action.label }}</span>
@@ -43,19 +43,10 @@
     .row {
         margin-top: 4px;
         border-radius: 4px;
-        background-color: rgb(11, 11, 87);
         margin-left: 0px;
         margin-right: 0px;
         flex-wrap: nowrap;
         
-    }
-    .activity {
-        padding: 20px 15px;
-        background-color: rgba(7, 7, 65, 0.6);
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        padding-bottom: 10px;
-        flex-grow: 1;
     }
 
     .d {
