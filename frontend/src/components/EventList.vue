@@ -91,7 +91,7 @@
     }
 
     .row {
-        margin-top: 2px;
+        margin-bottom: 3px;
         border-radius: 8px;
         margin-left: 0px;
         margin-right: 0px;
@@ -168,4 +168,9 @@
     li > span {
         font-size: 70%;
     }
+
+    button:hover {
+        filter: brightness(130%);
+    }
+
 </style>

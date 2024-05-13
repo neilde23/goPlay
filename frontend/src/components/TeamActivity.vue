@@ -1,7 +1,7 @@
 <template>
     <div class="activity">
         <div class="title-player-dashboard">Latest Activity</div>
-        <div class="row secondary-color" v-for="actionDesc in actionDescriptions">
+        <div class="row secondary-color" v-for="actionDesc in actionDescriptions.slice(0, maxActivity)">
             <div class="d activity-color" :style="{ backgroundColor: actionDesc.action.color }"></div>
             <div class="d">
                 <span>{{ actionDesc.action.label }}</span>
@@ -12,6 +12,8 @@
 
 <script setup>
     import { ref } from 'vue';
+
+    const maxActivity = ref(9);
 
     const actionsEnum = {
         CHAT_MANAGER: { color: "#FF0000", label: "Manager" },
@@ -65,5 +67,22 @@
         border-bottom-left-radius: 4px;
         width: 5px;
     }
+
+    .scrollGradient {
+        background: 
+            linear-gradient(#78f759 33%, rgba(120,247,89, 0)),
+            linear-gradient(rgba(120,247,89, 0), #78f759 66%) 0 100%,
+            radial-gradient(farthest-side at 50% 0, rgba(34,34,34, 0.5), rgba(0,0,0,0)),
+            radial-gradient(farthest-side at 50% 100%, rgba(34,34,34, 0.5), rgba(0,0,0,0)) 0 100%;
+        background-color: #78f759;
+        background-repeat: no-repeat;
+        background-attachment: local, local, scroll, scroll;
+        background-size: 100% 96px, 100% 96px, 100% 32px, 100% 32px;
+    }
+
+    .row:hover {
+        filter: brightness(130%);
+    }
+
 
 </style>

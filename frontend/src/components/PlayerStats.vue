@@ -10,6 +10,7 @@
                 <div class="col-2">Value</div>
                 <div class="col-2">Avg</div>
             </div>
+            <div class="d-flex justify-content-center"><hr width="90%"></div>
             <div 
                 class="row s1"
                 v-for="(value, key, index) in recentPlayerMatches[indexGraph]" 
@@ -226,6 +227,11 @@
     .active {
         border: 2px solid #007bff;
         border-radius: 5px;
+    }
+
+    hr {
+        margin: 0;
+
     }
 
 

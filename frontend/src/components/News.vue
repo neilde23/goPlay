@@ -88,7 +88,7 @@
 <style scoped>
 
     .news-img {
-        height: 280px;
+        height: 275px;
         width: auto;
         background-size: cover;
         background-position: 50%;
