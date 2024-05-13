@@ -15,7 +15,7 @@
                 <div>{{ row.t1name }}</div>
                 <div>{{ row.t2name }}</div>
             </div>
-            <div class="col">{{ row.eventName }}</div>
+            <div class="col" style="text-align: center;">{{ row.eventName }}</div>
         </div>
         <div class="container no-matches" v-if="matchesTest.length === 0">
             <p>There are currently no matches</p>

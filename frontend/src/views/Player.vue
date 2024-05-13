@@ -60,7 +60,6 @@
 
     .row {
         flex-wrap: nowrap;
-        overflow: hidden;
     }
 
 </style>

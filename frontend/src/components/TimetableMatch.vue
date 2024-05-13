@@ -28,9 +28,9 @@
         <div class="rows row card-row" v-for="row in matchesTest" :style="{ backgroundColor: color2 }">
             <div class="col-1">{{ row.dateBegin }}</div>
             <div class="col d-flex justify-content-center">
-                <div>{{ row.t1name }}</div>
+                <div style="width: 100%; text-align: right;">{{ row.t1name }}</div>
                 <div class="vs" :style="{ backgroundColor: color1 }">vs</div>
-                <div>{{ row.t2name }}</div>
+                <div style="width: 100%; text-align: left;">{{ row.t2name }}</div>
             </div>
             <div class="col">{{ row.eventName }}</div>
         </div>

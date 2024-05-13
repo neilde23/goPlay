@@ -86,7 +86,7 @@
     .event {
         padding: 20px 15px;
         border-radius: 10px;
-        width: 420px;
+        width: 440px;
         padding-bottom: 10px;
     }
 

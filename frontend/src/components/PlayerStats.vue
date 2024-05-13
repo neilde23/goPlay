@@ -18,8 +18,8 @@
                 :key="index" @click="updateGraph(key, index)"
             >
                 <div class="col">{{ key }}</div>
-                <div class="col-2">{{ value }}</div>
-                <div class="col-2">{{ avgValue[index] }}</div>
+                <div class="col-2" style="text-align: center;">{{ value }}</div>
+                <div class="col-2" style="text-align: center;">{{ avgValue[index] }}</div>
             </div>
         </div>
     </div>
@@ -205,7 +205,7 @@
     .stats {
         padding: 20px 15px;
         border-radius: 10px;
-        width: 420px;
+        width: 440px;
         padding-bottom: 10px;
         flex-grow: 1;
 
