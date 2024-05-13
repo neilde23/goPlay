@@ -1,5 +1,5 @@
 <template>
-    <div class="timetable">
+    <div class="timetable primary-color">
         <div class="d-flex justify-content-center">
             <ul class="filters">
                 <div class="date-picker d-inline-flex">
@@ -9,47 +9,50 @@
                 </div>
             </ul>
         </div>
-        <div class="row card-row" v-for="row in arrayMatches">
+        <div class="row card-row secondary-color" v-for="row in matchesTest">
             <div class="col-2 text-center">{{ row.dateBegin }}</div>
             <div class="col">
-                <div>{{ row.idTeam1 }}</div>
-                <div>{{ row.idTeam2 }}</div>
+                <div>{{ row.t1name }}</div>
+                <div>{{ row.t2name }}</div>
             </div>
-            <div class="col">{{ row.idEvent }}</div>
+            <div class="col">{{ row.eventName }}</div>
+        </div>
+        <div class="container no-matches" v-if="matchesTest.length === 0">
+            <p>There are currently no matches</p>
         </div>
     </div>
 </template>
   
 <script setup>
-    import { ref, computed } from 'vue';
-  
-    const arrayMatches = ref([
-    {
-        
-        idTeam1: 456,
-        idTeam2: 789,
-        dateBegin: '10:00',
-        idEvent: 123,
-        game: 'Dota 2'
-    },
-    {
-        idTeam1: 789,
-        idTeam2: 123,
-        dateBegin: '12:30',
-        idEvent: 456,
-        game: 'LoL',
-    }
-    ]);
-
-    const games = ref([
-        "CSGO", "Rocket League", "LOL"
-    ]);
+    import { ref,  watch } from 'vue';
+    import axios from 'axios';
 
     const selectedDate = ref(getTodayDate());
+    const selectedGame = ref('');
+    const matchesTest = ref([]);
+    const maxItems = 10;
 
-    const matchList = computed(() => {
+    async function fetchMatches() {
+        try {
+            const filters = {
+                game : selectedGame.value,
+                date : selectedDate.value
+            };
+            const response = await axios.post('http://localhost:3000/api/match/', { filters });
+            matchesTest.value = response.data.slice(0, maxItems);
+           
+        } catch (error) {
+            console.error('Error fetching matches:', error);
+        }
+    }
 
+    watch([selectedGame, selectedDate], () => {
+        fetchMatches();
     });
+
+    fetchMatches();
+
+
 
     function getTodayDate() {
         const today = new Date();
@@ -86,7 +89,6 @@
     .row {
         margin-top: 2px;
         border-radius: 8px;
-        background-color: #636E7A;
         height: 70px;
         align-items: center;
         margin-left: 0px;
@@ -100,10 +102,9 @@
 
     .timetable {
         padding: 20px 25px;
-        background-color: #313840;
         border-radius: 10px;
-        width: 420px;
-        height: 500px;
+        width: 100%;
+        min-height: 40%;
     }
 
     .date-picker {
@@ -135,6 +136,16 @@
     .col-2 {
         padding-left: 5px;
     }
+
+    .no-matches {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+
+    }
+
+    
    
 </style>
   

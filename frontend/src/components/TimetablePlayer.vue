@@ -1,5 +1,5 @@
 <template>
-    <div class="timetable">
+    <div class="timetable primary-color">
         <div class="row">
           <div class="col first-col">
           </div>
@@ -81,7 +81,6 @@
 
   .timetable {
       padding: 20px 25px;
-      background-color: #313840;
       border-radius: 20px;
 
   }

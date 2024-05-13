@@ -60,6 +60,10 @@
 </script>
 
 <style scoped>
+
+    * {
+      font-size: small;
+    }
     #manager-button {
         background-color: #8B0000;
         color: white;

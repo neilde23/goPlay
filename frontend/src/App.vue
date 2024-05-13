@@ -29,9 +29,6 @@
 </script>
 
 <style scoped>
-    * {
-        font-size: small;
-    }
 
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
