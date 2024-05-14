@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="this.$store.state.userCredentials">
         <h1 class="title">Hello {{ this.$store.state.userCredentials.pseudo }}</h1>
         <h2>Welcome to your profile page!</h2>
         <!-- Display user account -->
@@ -40,7 +40,7 @@
             },
             logout() {
                 // Remove the user credentials from the store
-                this.$store.state.userCredentials = null;
+                this.$store.commit('removeUserCredentials');
 
                 // Redirect to the home page
                 this.$router.push('/');

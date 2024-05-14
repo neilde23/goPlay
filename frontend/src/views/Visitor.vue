@@ -13,15 +13,15 @@
                 <p>Are you a player? Access the player area to find and join a team!
                 </p>
                 <div class="d-flex gap-2 py-5">
-                    <router-link to="/player"><button class="btn btn-primary d-inline-flex align-items-center" type="button">
+                    <router-link :to=" $store.state.userCredentials ? '/player' : '/signin'"><button class="btn btn-primary d-inline-flex align-items-center" type="button">
                         Player Area
                         <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
                     </button></router-link>
-                    <router-link to="/manager"><button id="manager-button" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+                    <router-link :to=" $store.state.userCredentials ? '/manager' : '/signin'"><button id="manager-button" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
                         Manager Area
                         <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
                     </button></router-link>
-                    <router-link to="/team"><button id="team-button" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+                    <router-link :to=" $store.state.userCredentials ? '/team' : '/signin'"><button id="team-button" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
                         Team Area
                         <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
                     </button></router-link>
@@ -30,9 +30,6 @@
             </div>
         </div>
         <div class="article">
-            <div id="search-bar" class="container" ref="targetElement">
-                <SearchBar/>
-            </div>
             <div class="container">
                 <TimetableMatch/>
             </div>
@@ -46,7 +43,7 @@
     import Carousel from "@/components/Carousel.vue"
     import TimetableMatch from "@/components/TimetableMatch.vue"
 
-    const targetElement = ref(null);
+    /*const targetElement = ref(null);
     const targetElement2 = ref(null);
 
     function scrollToTarget1() 
@@ -56,7 +53,7 @@
     function scrollToTarget2() 
     {
         targetElement2.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    }*/
 </script>
 
 <style scoped>
@@ -92,5 +89,6 @@
     }
     .article {
         height: 920px;
+        margin-top: 90px;
     }
 </style>
