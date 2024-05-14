@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <router-view/>
+    <router-view style="min-height:100vh;"/>
     <div class="scroll-to-top" @click="scrollToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
