@@ -34,16 +34,16 @@ module.exports = app => {
     router.get("/:id", teams.findOne);
 
     // Retrieve all Players of a Team
-    router.get("/players/:id", teams.findPlayers);
+    router.get("/players/:id", teams.getPlayers);
 
     // Retrieve pending Players of a Team
-    router.get("/pendingPlayers/:id", teams.findPendingPlayers);
+    router.get("/pendingPlayers/:id", teams.getPendingPlayers);
 
     // Retrieve all Events of a Team
-    router.get("/events/:id", teams.findEvents);
+    router.get("/events/:id", teams.getEvents);
     
     // Retrieve all Games of a Team
-    router.get("/games/:id", teams.findGames);
+    router.get("/games/:id", teams.getGames);
 
     // Retrieve all Trainings of a Team
     router.get("/trainings/:id", teams.findTrainings);
@@ -52,7 +52,7 @@ module.exports = app => {
     router.get("/tournaments/:id", teams.findTournaments);
 
     // Retrieve all Invites of a Team
-    router.get("/invites/:id", teams.findInvites);
+    router.get("/invites/:id", teams.getInvites);
     
     // Update a Team with id
     router.put("/:id", teams.update);

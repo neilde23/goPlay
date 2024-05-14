@@ -1,34 +1,52 @@
 <template>
     <div id="teamtitle">
-        <h2>Currently in {{ datateams.length }} teams</h2>
+        <h2>{{ teamName }} </h2>
     </div>
-    <div class="teams" v-for="team in datateams">
-        <div id="name">{{ team.name }}</div>
-        <div id="desc">{{ team.description }}</div>
-        <div id="manager">managed by {{ getmanager(team.idmanager) }}</div>
-    </div>
+    <div id="desc">{{ description }}</div>
+    <div id="manager" v-for="player in players"> {{ player }}</div>
 </template>
 
 <script>
-//jugez pas trop fort svp je sais pas ce que je fais
     import axios from 'axios';
+    import { ref } from 'vue';
+    
     export default {
         data() {
             return {
-                datateams: [
-                    {name: "team 1", description: "the strongest", idmanager: 0},
-                    {name: "team 2", description: "the weakest", idmanager: 1}
-                ]
+                teamName: "",
+                description: "",
+                players: []
             }
         },
         methods: {
-            async findAll() {
-                const response = await axios.get('http://localhost:3000/api/teams/').then(() => { return; });
+            async getTeam() {
+                const userCredentials = this.$store.getters.getUserCredentials;
+                let address = 'http://localhost:3000/api/teams/players/'
+                const response1 = await axios.get('http://localhost:3000/api/teams/manager/' + userCredentials.id).
+                then(
+                    response => {
+                        console.log(response.data[0].name);
+                        this.teamName = response.data[0].name;
+                        this.description = response.data[0].description;
+                        address += response.data[0].id;
+                        console.log(address);
+                    }
+                );
+                const response2 = await axios.get(address).
+                then(
+                    response => {
+                        console.log(response.data);
+                        this.players = response.data;
+                    }
+                );
             },
-            getmanager(id) { //temporary method for tests, should send request to database and get manager id
+            getplayers(id) { //temporary method for tests, should send request to database and get manager id
                 const managers = ["meunier", "adem"];
                 return managers[id];
             }
+        },
+        mounted() {
+            this.getTeam();
         }
     }
 </script>
