@@ -18,6 +18,7 @@
 </template>
 
 <script setup>
+    import { onMounted } from 'vue';
     const maxLength = 50;
     const newsList = [
         {
@@ -81,6 +82,11 @@
             imageLink: "https://esports.rocketleague.com/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2Fresize%3Dfit%3Aclip%2Cheight%3A1080%2Cwidth%3A1920%2Foutput%3Dformat%3Awebp%2F5qYFtgSmSYKP6ex9EadT&w=3840&q=75"
         }
     ];
+
+    onMounted(() => {
+        const carousel = document.getElementById('myCarousel');
+        new bootstrap.Carousel(carousel);
+    });
 
 
 </script>

@@ -21,6 +21,12 @@
 </template>
 
 <script setup>
+    import { onMounted } from 'vue';
+
+    onMounted(() => {
+            const carousel = document.getElementById('myCarousel');
+            new bootstrap.Carousel(carousel);
+    });
 
 </script>
 
