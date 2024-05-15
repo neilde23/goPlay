@@ -34,10 +34,10 @@ module.exports = app => {
     router.get("/:id", teams.findOne);
 
     // Retrieve all Players of a Team
-    router.get("/players/:id", teams.getPlayers);
+    router.get("/players/:id", teams.findPlayers);
 
     // Retrieve pending Players of a Team
-    router.get("/pendingPlayers/:id", teams.getPendingPlayers);
+    router.get("/pendingPlayers/:id", teams.findPendingPlayers);
 
     // Retrieve all Events of a Team
     router.get("/events/:id", teams.getEvents);

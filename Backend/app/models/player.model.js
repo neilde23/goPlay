@@ -63,7 +63,7 @@ class Player {
 
 	// find a player by id
 	static findById(playerId, result) {
-		sql.query(`SELECT * FROM Player WHERE idPlayer = ${playerId}`, (err, res) => {
+		sql.query(`SELECT * FROM Player WHERE id = ${playerId}`, (err, res) => {
 			if (err) {
 				console.log("error: ", err);
 				result(err, null);
@@ -125,7 +125,7 @@ class Player {
 
 	// find teams
 	static findTeams(playerId, result) {
-		sql.query(`SELECT idTeam FROM Include WHERE idPlayer = ${playerId}`, (err, res) => {
+		sql.query(`SELECT idTeam FROM include WHERE idPlayer = ${playerId}`, (err, res) => {
 			if (err) {
 				console.log("error: ", err);
 				result(err, null);

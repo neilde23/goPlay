@@ -5,6 +5,6 @@ const match = require("../controllers/match.controller.js");
 
 router.get("/", match.getAll);
 router.post("/", match.getAll);
-
+router.get("/:id", match.getMatchByIdTeam);
 
 module.exports = router;

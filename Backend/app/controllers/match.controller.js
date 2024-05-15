@@ -1,17 +1,30 @@
 const Match = require("../models/match.model.js");
 
+exports.getAll = (req, res) => {
+    Match.getMatch(req.body, (err, data) => {
+        if (err) {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving matchs."
+            });
+        } else res.send(data);
+    });
+};
 
-exports.getAll = async (req, res) => {
-    const { filters } = req.body;
-    try 
-    {
-        const [matches] = await Match.getMatch(filters);
-        res.json(matches);
-
-    } catch (error) 
-    {
-        console.error('Error fetching matches:', error);
-        res.status(500).json(error); 
-    }
-
+exports.getMatchByIdTeam = (req, res) => {
+    console.log(req.params.id);
+    Match.getMatchByIdTeam(req.params.id, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found Match with id ${req.params.id}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving Match with id " + req.params.id
+                });
+            }
+        } else res.send(data);
+    });
 }
+

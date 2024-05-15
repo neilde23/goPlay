@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <router-view style="min-height:100vh;"/>
+    <router-view/>
     <div class="scroll-to-top" @click="scrollToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
@@ -29,7 +29,6 @@
 </script>
 
 <style scoped>
-
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -49,7 +48,6 @@
     .bottom {
         bottom: 0;
         width: 100%;
-        position:relative;
     }
 
     .scroll-to-top {

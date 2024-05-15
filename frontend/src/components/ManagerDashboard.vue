@@ -37,7 +37,7 @@
                         <h2>{{ team.name }}</h2>
                         <h3>Description :</h3>
                         <p>{{ team.description }}</p>
-                        <router-link to="/team" class="linked-btn">Manage team</router-link>
+                        <router-link to="/teamDetail" class="linked-btn" @click="setCurrentTeam(team.id)">View team</router-link>
                     </div>
                     <div class="team-image">
                         <img src="../assets/7.jpeg" alt="Team Image">
@@ -54,17 +54,23 @@
         <div v-else-if="activeTab === 'matches'" class="display-list">
             <h2>My matches</h2>
             <div class="scrollable-list">
-                <div class="match-box" v-for="(match, index) in matches" :key="index">
+                <div class="match-box" v-for="(match, index) in displayedMatches" :key="match.id">
                     <div class="match-info">
-                        <h2>{{ match.title }}</h2>
-                        <h3>Opponent: {{ match.opponent }}</h3>
-                        <p>Date: {{ match.date }}</p>
-                        <router-link to="/match" class="linked-btn">Manage match</router-link>
+                        <h2>{{ match.game}}</h2>
+                        <!-- get opponents with id of teams -->
+                        <h3>Opponents: {{ getOpponents(match) }}</h3>
+                        <p>Date: {{ match.dateBegin }}</p>
                     </div>
                     <div class="match-image">
                         <img src="../assets/8.jpeg" alt="Match Image">
                     </div>
                 </div>
+            </div>
+            <div v-if="!showLess && matches.length > displayedMatches.length" class="center-btn">
+                <button @click="showMoreMatches" class="load-more-btn">Show More</button>
+            </div>
+            <div v-else-if="showLess && displayedMatches.length > 6" class="center-btn">
+                <button @click="showLessMatches" class="load-more-btn">Show Less</button>
             </div>
         </div>
     </div>
@@ -74,7 +80,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import Swal from 'sweetalert2';
 import SearchBar from "./SearchBar.vue";
 import TeamFormPopup from "./TeamFormPopup.vue";
@@ -88,13 +94,12 @@ export default {
     data() {
     return {
         teams: [], // Initialisation du tableau d'équipes
+        allTeams: [], // Initialisation du tableau pour stocker toutes les équipes
         showPopup: false, // Initialisation de la variable pour afficher ou masquer le popup
         displayedTeams: [], // Tableau pour stocker les équipes affichées
+        displayedMatches: [], // Tableau pour stocker les matchs affichés
         showLess: false, // Variable pour contrôler l'affichage du bouton "Show Less"
-        matches: [ // Sample match data
-        { title: 'Match 1', opponent: 'Team 1', date: '01/01/2022' },
-        { title: 'Match 2', opponent: 'Team 2', date: '02/01/2022' }
-        ],
+        matches: [],
         activeTab: 'teams' // Définir l'onglet actif par défaut sur les équipes
     };
     },
@@ -102,6 +107,9 @@ export default {
         this.fetchTeams(); // Appel de la méthode de récupération des équipes lorsque le composant est monté
     },
     methods: {
+        setCurrentTeam(teamId) {
+            this.$store.commit('setCurrentTeam', teamId);
+        },
         async fetchTeams() {
             // Recuperation des credentials de l'utilisateur from store
             const userCredentials = this.$store.getters.getUserCredentials;
@@ -117,6 +125,45 @@ export default {
             .catch(error => {
                 console.error('Error fetching teams: ', error);
             });
+
+            // Récupération de toutes les équipes pour la recherche
+            const responseAll = await axios.get('http://localhost:3000/api/teams')
+            .then(response => {
+                this.allTeams = response.data;
+                console.log('All Teams:', this.allTeams);
+            })
+            .catch(error => {
+                console.error('Error fetching all teams: ', error);
+            });
+            this.fetchMatches();
+        },
+        async fetchMatches() {
+            // Récupération des matchs depuis l'API
+            for (let i = 0; i < this.teams.length; i++) {
+                try {
+                    const response = await axios.get('http://localhost:3000/api/match/' + this.teams[i].id)
+                    .then(response => {
+                        this.matches = this.matches.concat(response.data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching matches: ', error);
+                    });
+                } catch (error) {
+                    console.error('Error fetching matches: ', error);
+                }
+            }
+            this.displayedMatches = this.matches.slice(0, 6); // Afficher uniquement les six premiers matchs
+            console.log('Matches:', this.displayedMatches);
+        },
+        // Méthode pour obtenir les noms des équipes opposées à partir des IDs dans les matchs
+        getOpponents(match) {
+            const team1 = this.allTeams.find(team => team.id === match.idTeam1);
+            const team2 = this.allTeams.find(team => team.id === match.idTeam2);
+            console.log('Opponents:', team1, team2);
+            if (team1 && team2) {
+                return `${team1.name} vs ${team2.name}`;
+            }
+            return "Opponents Not Found";
         },
         showTeamForm() {
             this.showPopup = true; // Show popup when "Add team" button clicked
@@ -163,6 +210,18 @@ export default {
             this.displayedTeams = this.teams.slice(0, 6);
             this.showLess = false; // Désactiver le bouton "Show Less"
         },
+        showLessMatches() {
+            // Afficher seulement les six premiers matchs lorsque le bouton "Show Less" est cliqué
+            this.displayedMatches = this.matches.slice(0, 6);
+            this.showLess = false; // Désactiver le bouton "Show Less"
+        },
+        showMoreMatches() {
+            // Afficher six matchs supplémentaires lorsque le bouton "Show More" est cliqué
+            const startIndex = this.displayedMatches.length;
+            const endIndex = startIndex + 6;
+            this.displayedMatches = this.matches.slice(0, endIndex);
+            this.showLess = true; // Activer le bouton "Show Less"
+        },
         filterTeams(searchText) {
             console.log("Search text:", searchText);
             if (searchText === '') {
@@ -171,7 +230,7 @@ export default {
                 return;
             }
             const filteredTeams = this.teams.filter(team => {
-            return team.name.toLowerCase().includes(searchText.toLowerCase());
+                return team.name.toLowerCase().includes(searchText.toLowerCase());
             });
             this.displayedTeams = filteredTeams.slice(0, 6); // Limit the displayed teams
             this.showLess = false; // Reset the "Show Less" button
@@ -179,17 +238,15 @@ export default {
         filterMatches(searchText) {
             console.log("Search text:", searchText);
             if (searchText === '') {
-                this.matches = [ // Sample match data
-                    { title: 'Match 1', opponent: 'Team 1', date: '01/01/2022' },
-                    { title: 'Match 2', opponent: 'Team 2', date: '02/01/2022' }
-                ];
+                this.displayedMatches = this.matches.slice(0, 6); // Reset displayed matches
+                this.showLess = false; // Reset "Show Less" button
                 return;
             }
-            // Filter matches based on title
             const filteredMatches = this.matches.filter(match => {
-            return match.title.toLowerCase().includes(searchText.toLowerCase());
+                return match.game.toLowerCase().includes(searchText.toLowerCase());
             });
-            this.matches = filteredMatches;
+            this.displayedMatches = filteredMatches.slice(0, 6); // Limit the displayed matches
+            this.showLess = false; // Reset the "Show Less" button
         },
         changeTab(tabName) {
             this.activeTab = tabName; // Change the active tab when clicked
@@ -203,7 +260,6 @@ export default {
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-    height: 100vh;
 }
 
 .title {
@@ -292,15 +348,10 @@ export default {
     width: 100%;
 }
 
-.scrollable-list {
-    max-height: 40vh;
-    overflow-y: auto;
-}
-
 .display-list h2 {
-    font-size: 1.75em;
+    font-size: 1.5em;
     font-weight: bold;
-    margin-bottom: 10px;
+    font-style: italic;
 }
 
 .team-box,

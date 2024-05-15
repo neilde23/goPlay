@@ -162,15 +162,15 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    Team.findById(req.params.teamId, (err, data) => {
+    Team.findById(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found Team with id ${req.params.teamId}.`
+                    message: `Not found Team with id ${req.params.id}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Error retrieving Team with id " + req.params.teamId
+                    message: "Error retrieving Team with id " + req.params.id
                 });
             }
         } else res.send(data);
@@ -334,7 +334,7 @@ exports.findPendingPlayers = (req, res) => {
     });
 };
 
-exports.findInvites = (req, res) => {
+exports.getInvites = (req, res) => {
     Team.getInvites(req.params.teamId, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -351,7 +351,7 @@ exports.findInvites = (req, res) => {
     });
 };
 
-exports.findEvents = (req, res) => {
+exports.getEvents = (req, res) => {
     Team.getEvents(req.params.teamId, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -367,7 +367,7 @@ exports.findEvents = (req, res) => {
     });
 };
 
-exports.findGames = (req, res) => {
+exports.getGames = (req, res) => {
     Team.getGames(req.params.teamId, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {

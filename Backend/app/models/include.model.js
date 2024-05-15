@@ -16,7 +16,7 @@ const Include = function(include) {
 
 Include.create = (newInclude, result) => {
     console.log("newInclude: ", newInclude);
-    sql.query("INSERT INTO Include SET ?", newInclude, (err, res) => {
+    sql.query("INSERT INTO include SET ?", newInclude, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -29,7 +29,7 @@ Include.create = (newInclude, result) => {
 }
 
 Include.findPlayersByTeam = (teamId, result) => {
-    sql.query(`SELECT idPlayer FROM Include WHERE idTeam = ${teamId}`, (err, res) => {
+    sql.query(`SELECT idPlayer FROM include WHERE idTeam = ${teamId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
