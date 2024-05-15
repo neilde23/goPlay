@@ -360,7 +360,7 @@ export default {
     border-radius: 8px;
     padding: 20px;
     margin: 10px;
-    background-color: transparent;
+    background-color: black;
     transition: background-color 0.3s ease;
     display: flex;
     align-items: center;

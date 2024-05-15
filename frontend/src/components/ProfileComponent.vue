@@ -39,6 +39,7 @@
                 this.showPopup = true;
             },
             logout() {
+                console.log('Logging out...');
                 // Remove the user credentials from the store
                 this.$store.commit('removeUserCredentials');
 

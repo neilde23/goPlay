@@ -48,9 +48,7 @@ export default {
 }
 </script>
 
-<!-- Styles -->
 <style scoped>
-
 .popup-overlay {
     position: fixed;
     top: 5%;

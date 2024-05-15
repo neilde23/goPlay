@@ -2,24 +2,44 @@
     <div class="popup-overlay" v-if="show">
         <div class="popup-container">
             <h2>Add a new player</h2>
-            <form @submit.prevent="handleSubmit">
-                <label for="playerPseudo">Pseudo:</label>
-                <input type="text" id="playerPseudo" v-model="formData.pseudo" required>
-
-                <label for="playerEmail">Email:</label>
-                <input type="email" id="playerEmail" v-model="formData.email" required>
-                
-                <div class="popup-buttons">
-                    <button type="button" @click="closePopup">Cancel</button>
-                    <button type="submit">Create</button>
+            <SearchBar
+                msg="Enter a player pseudo..."
+                class="search-bar"
+                @search="filterPlayers"
+            />
+            <div class="players" v-if="players.length > 0">
+                <div
+                    :class="{ player: true, selected: player.id === formData.id }"
+                    v-for="player in players"
+                    :key="player.id"
+                    @click="selectPlayer(player)"
+                >
+                    <div class="player-info">
+                        <div class="player-pseudo">{{ player.pseudo }}</div>
+                        <p>Email : {{ player.email }}</p>
+                    </div>
+                    <img src="/rocketLeague.webp" alt="Rocket League" />
                 </div>
-            </form>
+            </div>
+            <div v-else>
+                <p>No players found</p>
+            </div>
+            <div class="popup-buttons">
+                <button type="button" @click="closePopup">Cancel</button>
+                <button type="button" @click="addPlayer">Add</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import SearchBar from './SearchBar.vue';
+import axios from 'axios';
+
     export default {
+        components: {
+            SearchBar
+        },
         props: {
             show: {
                 type: Boolean,
@@ -29,19 +49,47 @@
         data() {
             return {
                 formData: {
-                    pseudo: '',
-                    email: '',
+                    id : '',
                 },
+                players: [],
             };
         },
+        created() {
+            // Fetch all players when the component is mounted
+            this.fetchPlayers();
+        },
         methods: {
+            async fetchPlayers() {
+                // Send a GET request to the API to fetch all players
+                const response = await axios.get('http://localhost:3000/api/players/')
+                .then(response => {
+                    this.players = response.data;
+                })
+                .catch(error => {
+                    console.error('Error fetching player: ', error);
+                });
+            },
+            filterPlayers(search) {
+                if (search) {
+                    // Filter players by pseudo
+                    this.players = this.players.filter(player => player.pseudo.includes(search));
+                } else {
+                    // Fetch all players
+                    this.fetchPlayers();
+                }
+            },
             closePopup() {
-                this.show = false;
+                // Emit 'close' event to close the popup
+                this.$emit('close');
             },
-            handleSubmit() {
-                // Send a POST request to the API to add a player to the team
+            selectPlayer(player) {
+                // Set the selected player
+                this.formData.id = player.id;
+            },
+            addPlayer() {
+                // Emit 'create' event with the selected player
                 this.$emit('create', this.formData);
-            },
+            }
         },
     };
 </script>
@@ -73,28 +121,14 @@
     color: white;
 }
 
-.popup-container label {
-    display: block;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.popup-container input,
-.popup-container textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
 .popup-container .popup-buttons {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .popup-container button {
-    width: 25%;
+    width: 100px;
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -105,4 +139,58 @@
 .popup-container button:hover {
     background-color: #3949AB;
 }
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.players {
+    overflow-y: auto;
+    max-height: 10rem;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.player:hover {
+    background-color: #5C6BC0;
+    cursor: pointer;
+}
+
+/* Add a class to style the selected player */
+.selected {
+    background-color: #381284;
+}
+
+.player p {
+    font-size: 0.9em;
+    font-weight: lighter;
+    margin-left: 10px;
+}
+
+.player-pseudo {
+    font-size: 1.25em;
+    font-weight: bold;
+    font-style: italic;
+    color: #381284;
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player img {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+}
+
 </style>

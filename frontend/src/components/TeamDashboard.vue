@@ -3,14 +3,16 @@
         <div class="team-info">
             <h2>{{ team.name }}</h2>
             <p>{{ team.description }}</p>
+        </div>
+        <div class="top-controls">
             <button @click="showCreateMatch" class="btn-primary">Create Match</button>
             <button @click="showAddPlayer" class="btn-primary">Add Player</button>
+            <SearchBar
+                msg="Enter a player name or a match game to search..."
+                class="search-bar"
+                @search="filterPlayersOrMatches"
+            />
         </div>
-        <SearchBar
-            msg="Enter a player name"
-            class="search-bar"
-            @search="filterPlayers"
-        />
         <div class="left-column">
             <div class="display-list">
             <h2>My matches</h2>
@@ -62,15 +64,14 @@
                     <p>Email : {{ player.email }}</p>
                 </div>
                 <div class="player-image">
-                    <!-- Ajoutez une image du joueur ici -->    
-                    <img src="../assets/5.png" alt="Player Image" />
+                    <img src="/rocketLeague.webp" alt="Player Image" />
                 </div>
                 </div>
             </div>
             </div>
         </div>
-        <CreateMatch v-if="showPopupMatch" :teamId="teamId" />
-        <AddPlayer v-if="showPopupPlayer" @create="addPlayer" @close="showPopupPlayer = false" />
+        <CreateMatch v-if="showPopupMatch" @create="createMatch" @close="showPopupMatch = false" :show="showPopupMatch" />
+        <AddPlayer v-if="showPopupPlayer" @create="addPlayer" @close="showPopupPlayer = false" :show="showPopupPlayer" />
     </div>
 </template>
 
@@ -81,6 +82,11 @@ import CreateMatch from "@/components/CreateMatch.vue";
 import AddPlayer from "@/components/AddPlayer.vue";
 
 export default {
+    components: {
+        SearchBar,
+        CreateMatch,
+        AddPlayer,
+    },
     props: {
         teamId: {
             type: Number,
@@ -161,14 +167,14 @@ export default {
             this.players = playersData;
             this.displayedPlayers = this.players.slice(0, 6);
         },
-        filterPlayers(search) {
-            if (search) {
-            this.displayedPlayers = this.players.filter((player) =>
-                player.pseudo.toLowerCase().includes(search.toLowerCase())
-            );
-            } else {
-            this.displayedPlayers = this.players.slice(0, 6);
-            }
+        filterPlayersOrMatches(search) {
+            const searchValue = search.toLowerCase();
+            this.displayedPlayers = this.players.filter((player) => {
+                return player.pseudo.toLowerCase().includes(searchValue);
+            });
+            this.displayedMatches = this.matches.filter((match) => {
+                return match.game.toLowerCase().includes(searchValue);
+            });
         },
         getOpponent(team1Id, team2Id) {
             const team1 = this.allTeams.find((team) => team.id === team1Id);
@@ -212,6 +218,21 @@ export default {
                 console.error('Error adding player: ', error);
             });
         },
+        async createMatch(match) {
+            console.log('Match:', match);
+            try {
+                const response = await axios.post('http://localhost:3000/api/match', {
+                    idTeam1: this.teamId,
+                    idTeam2: match.team2,
+                    game: match.game,
+                    dateBegin: match.date,
+                });
+                console.log('Match created:', response.data);
+                this.fetchMatches();
+            } catch (error) {
+                console.error('Error creating match: ', error);
+            }
+        },
     },
 };
 </script>
@@ -236,6 +257,15 @@ h2 {
     width: 100%;
 }
 
+.top-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
 button {
     background-color: #5E17EB;
     color: white;
@@ -252,19 +282,18 @@ button:hover {
 }
 
 .left-column {
-    width: 50%;
+    width: 70%;
     overflow: hidden;
 }
 
 .right-column {
-    width: 50%;
+    width: 30%;
     overflow: hidden;
 }
 
 .display-list {
     margin-bottom: 1rem;
 }
-
 
 .plus {
     text-decoration: none;
@@ -302,14 +331,13 @@ button:hover {
 
 .player-box,
 .match-box {
-    display: flex;
-    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     padding: 20px;
-    margin : 10px;
-    background-color: transparent;
-    border-radius: 5px;
-    border: solid 1px #ccc;
+    margin: 10px;
+    background-color: black;
     transition: background-color 0.3s ease;
+    display: flex;
     align-items: center;
 }
 
@@ -332,15 +360,26 @@ button:hover {
     margin-left: 10px;
 }
 
-.player-box {
-    display: flex;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background-color: transparent;
+.player-box h3 {
+    font-size: 1.25em;
+    font-weight: bold;
+    font-style: italic;
+    color: #381284;
+}
+
+.player-box p {
+    font-size: 0.9em;
+    font-weight: lighter;
+    margin-left: 10px;
+}
+
+.player-info,
+.match-info {
+    flex: 1;
 }
 
 .match-image {
-    margin-left: 100px;
+    margin-left: 20px;
     width: 100px;
 }
 
@@ -351,23 +390,7 @@ button:hover {
 
 .match-image img,
 .player-image img {
-    max-width: 100%;
-}
-
-.player-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.player-info h3 {
-    font-size: 1.25em;
-    font-weight: bold;
-    font-style: italic;
-}
-
-.center-btn {
-    text-align: center;
+    width: 100%;
 }
 
 .load-more-btn {

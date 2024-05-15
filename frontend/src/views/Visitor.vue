@@ -12,7 +12,7 @@
                 <p>Are you a manager? Access the manager area to create and manage your team!</p>
                 <p>Are you a player? Access the player area to find and join a team!
                 </p>
-                <div class="d-flex gap-2 py-5" v-if="!$store.state.userCredentials">
+                <div class="d-flex gap-2 py-5" v-if="$store.state.userCredentials">
                     <router-link :to=" $store.state.userCredentials ? '/player' : '/signin'"><button class="btn btn-primary d-inline-flex align-items-center" type="button">
                         Player Area
                         <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>

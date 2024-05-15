@@ -14,11 +14,11 @@ const sql = require("./db.js");
 
 // constructor
 const Event = function(event) {
+    this.name = event.name;
     this.dateBegin = event.dateBegin;
-    this.dateEnd = event.dateEnd;
     this.description = event.description;
-    this.idTeam = event.idTeam;
-    this.idPlayer = event.idPlayer;
+    this.duration = event.duration;
+    this.game = event.game;
 }
 
 Event.create = (newEvent, result) => {

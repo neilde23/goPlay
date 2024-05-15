@@ -47,16 +47,16 @@ class Match {
         });
     }
 
-    static createMatch(idEvent, team1, team2, dateBegin, game, result) {
-        db.query("INSERT INTO Matchs SET ?", { idEvent, idTeam1: team1, idTeam2: team2, dateBegin, game }, (err, res) => {
+    static createMatch(newMatch, result) {
+        db.query("INSERT INTO Matchs SET ?", newMatch, (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
                 return;
             }
 
-            console.log("created match: ", { id: res.insertId, idEvent, idTeam1: team1, idTeam2: team2, dateBegin, game });
-            result(null, { id: res.insertId, idEvent, idTeam1: team1, idTeam2: team2, dateBegin, game });
+            console.log("created match: ", { id: res.insertId, ...newMatch });
+            result(null, { id: res.insertId, ...newMatch });
         });
     }
 

@@ -1,4 +1,5 @@
 <template>
+    <h1 class="title">Player Dashboard</h1>
     <article>
         <div class="row separation">
             <div class="col">
@@ -36,16 +37,24 @@
 </script>
 
 <style scoped>
+    .title {
+        margin: 50px;
+        text-align: center;
+        font-size: 2em;
+        font-style: italic;
+    }
+
     .c1 {
         width: 650px;
     }
 
     .separation {
         margin-bottom: 20px;
+
     }
 
     article {
-        margin : 20px 200px 0px 200px;
+        margin : 20px;
         min-height: 500px;
     }
 
@@ -55,11 +64,15 @@
     }
 
     .title-test {
-        font-family: Marker Felt, fantasy
     }
 
     .row {
         flex-wrap: nowrap;
+    }
+
+    .col {
+        flex: 1;
+        width: 100%;
     }
 
 </style>
@@ -73,7 +86,7 @@
     }
 
     .primary-color {
-        background-color: #302b63;
+        background-color: black;
         border: 2px solid #1d1a3e;
 
     }

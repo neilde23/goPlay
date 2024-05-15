@@ -15,7 +15,7 @@ export default createStore({
             state.currentTeam = team;
             sessionStorage.setItem('currentTeam', JSON.stringify(team));
         },
-        removeUserCredentials() {
+        removeUserCredentials(state) {
             state.userCredentials = null;
             sessionStorage.removeItem('userCredentials');
         }
