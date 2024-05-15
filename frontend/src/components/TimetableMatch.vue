@@ -61,7 +61,7 @@
                 game : selectedGame.value,
                 date : selectedDate.value
             };
-            const response = await axios.post('http://localhost:3000/api/match/', { filters });
+            const response = await axios.get('http://localhost:3000/api/match/', { filters });
             matchesTest.value = response.data.slice(0, maxItems);
         } catch (error) {
             console.error('Error fetching matches:', error);
